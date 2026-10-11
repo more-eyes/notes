@@ -26,8 +26,25 @@ Write "Start here" and any plain-language text for the first reader. Write the t
 
 1. **Do not renumber.** Existing section and scenario numbers stay fixed, because reviewers cite them. Add new material inside an existing section, at the end of a list, or under an unnumbered heading.
 2. **Version every change.** Change the minor number when a claim, consequence, citation, or reader-facing text changes. Change the major number when numbering or structure changes in a way that breaks references. Typo-only edits do not change the version.
-3. **Record every version.** Add a changelog row that links the content commit. Tag the commit that contains the changelog row as `vX.Y`. Update the version line in the README.
+3. **Record every version.** Add a changelog row that links the content commit. Tag the commit that contains the changelog row with the note's tag prefix and the version, such as `release-v0.4`. Sign the tag. Link the version in the changelog row to the tagged text. Update the version line in the README.
 4. **Keep the filename.** The filenames are `who-can-move-your-bitcoin.md` and `what-can-you-check-about-a-release.md`. They stay fixed, so links keep working. Versions before 0.18 used `what-a-custody-pitch-has-to-show.md`; their tags keep that name, and a short file at that path links to the current one.
+
+### Version tags
+
+Each note has its own tag prefix, so that every tag names one note and one version.
+
+| Note | Tag prefix | Example |
+| :---- | :---- | :---- |
+| [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md) | `v` | `v0.18` |
+| [What Can You Check About a Software Release?](what-can-you-check-about-a-release.md) | `release-v` | `release-v0.4` |
+| [Which Code Actually Runs?](which-code-actually-runs.md) | `which-code-v` | `which-code-v0.3` |
+| [What Can You Check About an embit Release?](embit-release-records.md) | `embit-v` | `embit-v0.6` |
+
+- The unprefixed `v` tags belong to the custody note only. Reviewers cite them, so they keep that form.
+- A new note gets a short prefix that ends in `-v`. Add it to this table in the same change that adds the note.
+- Do not move or delete a tag. A correction gets a new version.
+- A tag created after the fact says so in its message, with the date it was created.
+- Adding a tag, or a changelog link to tagged text, does not change a note's version.
 
 ## Plain language
 
