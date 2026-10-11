@@ -71,6 +71,7 @@ One person maintains these notes. The drafting and the source checks are AI-assi
 ## Other files
 
 - [STYLE.md](STYLE.md) holds the editing rules that every note follows.
+- [AGENTS.md](AGENTS.md) holds the instructions for AI agents that draft or check notes.
 - [what-a-custody-pitch-has-to-show.md](what-a-custody-pitch-has-to-show.md) is a pointer. The custody note used that filename before version 0.18, and the pointer keeps old links working.
 
 This repository moved from `johnzilla/notes` in October 2026. Old links redirect here.
