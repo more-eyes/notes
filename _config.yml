@@ -2,7 +2,7 @@
 # GitHub's default Jekyll build renders the Markdown as-is. The GFM parser
 # generates heading IDs the same way github.com does, so Contents anchors resolve.
 title: more eyes
-description: Open is not the same as looked at.
+description: Open is not the same as looked at. Sourced, versioned notes on what evidence a software or custody claim needs.
 url: https://more-eyes.org
 theme: jekyll-theme-primer
 markdown: kramdown
