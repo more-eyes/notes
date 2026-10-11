@@ -68,6 +68,13 @@ Corrections are wanted. That is the reason for the name.
 
 One person maintains these notes. The drafting and the source checks are AI-assisted, and the maintainer reviews every change before it is merged. Each note states what was verified and what was not. Treat every statement here as a claim to check, not a fact to accept.
 
+## License
+
+The notes, [STYLE.md](STYLE.md), and [AGENTS.md](AGENTS.md) are licensed under [Creative Commons Attribution 4.0 International](https://github.com/more-eyes/notes/blob/main/LICENSE) (CC BY 4.0). You may copy, adapt, and republish them, including commercially, if you give credit.
+
+- **How to credit a note.** Give the note's title, its version, "more eyes", and a link to the tagged text, such as `https://github.com/more-eyes/notes/blob/v0.18/who-can-move-your-bitcoin.md`. A link to a tag keeps your citation fixed when the note changes.
+- **What the license does not cover.** Quoted passages and the sources that the notes cite belong to their owners. The license covers only the text written for these notes.
+
 ## Other files
 
 - [STYLE.md](STYLE.md) holds the editing rules that every note follows.
