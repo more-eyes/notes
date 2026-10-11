@@ -1,6 +1,6 @@
 # Style guide
 
-Rules for editing the notes in this repository: [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md) and [What Can You Check About a Software Release?](what-can-you-check-about-a-release.md), and notes that apply the release note to one project, such as [What Can You Check About an embit Release?](embit-release-records.md), and [Which Code Actually Runs?](which-code-actually-runs.md). They apply to every change, by any author. Check a change against this page before you commit it.
+Rules for editing the notes in the more eyes project: [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md) and [What Can You Check About a Software Release?](what-can-you-check-about-a-release.md), and notes that apply the release note to one project, such as [What Can You Check About an embit Release?](embit-release-records.md), and [Which Code Actually Runs?](which-code-actually-runs.md). They apply to every change, by any author. Check a change against this page before you commit it.
 
 Section numbers in the rules, such as §1.1 and §8, refer to the custody note. Rules that differ for the release note are marked.
 
@@ -71,3 +71,4 @@ A term inside a quoted claim, such as "Multiple vendors or devices" in §6, keep
 - Every link in the Contents resolves to a heading.
 - Every new external link loads.
 - The changelog row, tag, and README version line match.
+- Absolute links to this repository use `github.com/more-eyes/notes`. Changing only a link's address, with the same target, does not change a note's version.

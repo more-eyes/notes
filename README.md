@@ -1,35 +1,76 @@
-# notes
+# more eyes
 
-Notes and working documents, shared for collaboration.
+*Open is not the same as looked at.*
 
-## [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md)
+Notes that take a common claim about software or custody, state what evidence would support it, and read the public record against that. Each note gives questions to ask and the artifact that would answer each one.
 
+**New here?** Open any note below and read its **Start here** section. It is written in plain language and needs no technical background. The rest of each note is the record behind it.
+
+## What a note is
+
+A note is a versioned, sourced document that follows one question. Every note has the same parts:
+
+- **Start here.** The questions that matter, for a general reader.
+- **Records.** What a public source says, with the source, the date it was read, and a pinned version where one exists.
+- **Unresolved.** What the note did not check. Every record has this line.
+- **Questions that make a claim reviewable.** A claim you may hear, and the artifact to ask for.
+- **References and a changelog.** Each version stays citable.
+
+## What these notes are not
+
+- **Not rankings or verdicts.** A note states what a public record shows and what evidence a claim needs. It does not say that a product or a project is safe or unsafe.
+- **Not findings about anyone.** No organization or person is assessed. Where a record involves a person, the note names the role.
+- **Not the last word.** A missing artifact means only that the note does not show the claim. The evidence may exist and not have been read.
+
+## The notes
+
+### Two general notes
+
+**[Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md)**
 *Questions to ask about any way of holding it*
 
-**Version 0.18, peer review draft.** Comments on this version can cite the [fixed v0.18 text](https://github.com/johnzilla/notes/blob/v0.18/who-can-move-your-bitcoin.md); see the [changelog](who-can-move-your-bitcoin.md#changelog) for revisions.
+Version 0.18, peer review draft. Comments on this version can cite the [fixed v0.18 text](https://github.com/more-eyes/notes/blob/v0.18/who-can-move-your-bitcoin.md); see the [changelog](who-can-move-your-bitcoin.md#changelog).
 
-A threat-model and evidence-review framework for Bitcoin custody arrangements, for people choosing how to hold bitcoin and for technical reviewers. It opens with a plain-language Start here section. It separates what a custody claim ("only you can spend," "no single party can move it," "recovery is guaranteed") says from what the protocol enforces and what a deployment would have to prove. It works through a single-signature baseline and nine configurations: institutional, collaborative, and holder-controlled 2-of-3; multiple timed spending paths; joint signing with delayed exit; split backups of a single-signature secret; threshold and aggregate signing; accounts with external spending authority; and escrow. A further section covers payment channels. For each, it states the protocol consequences and the evidence a review should require. It then walks the full custody lifecycle, including signing-device supply chain, signer key leakage through nonces and the transfer channel, fee and deadline feasibility, and chain reorganizations, and covers quorum size, software that reaches a quorum of keys, shared failures, privacy, and coercion. It ends with questions that make a claim reviewable, a references section with each specification pinned to the version consulted, and a changelog. It describes kinds of arrangements, not companies: no organization is named or assessed.
+A framework for reviewing a custody arrangement. It separates what a custody claim says from what the protocol enforces and what a deployment would have to prove. It works through a single-signature baseline and nine configurations, then the full custody lifecycle. It describes kinds of arrangements and names no company.
 
-## [What Can You Check About a Software Release?](what-can-you-check-about-a-release.md)
-
+**[What Can You Check About a Software Release?](what-can-you-check-about-a-release.md)**
 *Questions to ask about a published file*
 
-**Version 0.4, peer review draft.** See the [changelog](what-can-you-check-about-a-release.md#changelog) for revisions.
+Version 0.4, peer review draft. See the [changelog](what-can-you-check-about-a-release.md#changelog).
 
-A comparison of software release processes, for people deciding what a download page is evidence of and for technical reviewers. It opens with a plain-language Start here section. It separates three checks: whether a change was public, who signed the release file, and whether another builder rebuilt it. It reads Bitcoin Core's release process beside three other well-known processes: the Linux kernel, Tor Browser, and the Debian archive. For each, it records the signed object, where keys are published, where a rebuild sits in the process, and what the person who downloads checks. A side-by-side table puts the same questions to all four. A further section covers provenance records, such as signed hash files, build-information files, SLSA provenance, transparency logs, and timestamps, and maps each to the checks. Every figure is tied to the rule or listing it came from and the date it was read. The note compares processes and does not rank them: no organization is assessed.
+A comparison of release processes. It separates three checks: whether a change was public, who signed the release file, and whether another builder rebuilt it. It reads Bitcoin Core's process beside the Linux kernel, Tor Browser, and the Debian archive, and it covers provenance records. It compares processes and does not rank them.
 
-## [What Can You Check About an embit Release?](embit-release-records.md)
+### Notes that apply the method
 
+**[What Can You Check About an embit Release?](embit-release-records.md)**
 *The release note's questions, put to one library*
 
-**Version 0.6, peer review draft.** See the [changelog](embit-release-records.md#changelog) for revisions.
+Version 0.6, peer review draft. See the [changelog](embit-release-records.md#changelog).
 
-A worked example of the release note's method, applied to embit, a Bitcoin library for Python that other projects build on. It opens with a plain-language Start here section. It records three objects: the 0.8.0 file on the Python Package Index, the signed tags for 0.8.1 and 0.8.2 in the source repository, and the written release process that the project added in 0.8.1. For each, it states what the public, signed, and rebuilt checks show, what the person who downloads can check, and what stays unresolved. It records the byte-for-byte match of 60 files shared by the PyPI archive and tagged tree, while leaving the native libraries' build provenance unresolved. It distinguishes workflow output destinations and the two attestation paths, and states what one downstream check script actually checks. It notes which object two downstream projects pin. Every reading is tied to a pinned commit or to the date a page was read. The note records release evidence only: it does not assess the library's code, and no person is assessed.
+A worked example for one Bitcoin library that other projects build on. It records the file on the Python Package Index, the signed tags in the source repository, and the project's written release process. It does not assess the library's code.
 
-## [Which Code Actually Runs?](which-code-actually-runs.md)
-
+**[Which Code Actually Runs?](which-code-actually-runs.md)**
 *Questions to ask when software has more than one way to do a job*
 
-**Version 0.3, peer review draft.** See the [changelog](which-code-actually-runs.md#changelog) for revisions.
+Version 0.3, peer review draft. See the [changelog](which-code-actually-runs.md#changelog).
 
-A note on fallbacks in software that makes or uses keys, for people who rely on such software and for technical reviewers. It opens with a plain-language Start here section. It defines a fallback, the selection between two ways to do a job, and the difference between code that is present and code that is reached. It describes four kinds of fallback and what a reader could inspect for each. It reads two public records: the random source for seeds in Coldcard firmware, from the maker's account and one independent analysis, and the secp256k1 implementation in the embit library. A table sets out what separates the two records, so that no conclusion carries from one to the other. It ends with the controls a project can show, each paired with the artifact that lets a reader check it, and with questions that make a claim reviewable. It makes no claim about how common the pattern is, and no organization is assessed.
+A note on fallbacks in software that makes or uses keys. It defines the selection between two ways to do a job, and the difference between code that is present and code that is reached. It reads two public records and states what the release checks leave open.
+
+## Corrections
+
+Corrections are wanted. That is the reason for the name.
+
+- **Found an error, or a source the note missed?** Open an [issue](https://github.com/more-eyes/notes/issues) or a pull request. Say which note, which section, and what the source shows.
+- **Maintain a project that a note describes?** Say so in the issue. A correction from the people who do the work carries the most weight.
+- **How a fix lands.** A change to a claim, a consequence, or a citation gets a new version and a changelog row. Earlier versions stay available through their tags.
+
+## How the notes are produced
+
+One person maintains these notes. The drafting and the source checks are AI-assisted, and the maintainer reviews every change before it is merged. Each note states what was verified and what was not. Treat every statement here as a claim to check, not a fact to accept.
+
+## Other files
+
+- [STYLE.md](STYLE.md) holds the editing rules that every note follows.
+- [what-a-custody-pitch-has-to-show.md](what-a-custody-pitch-has-to-show.md) is a pointer. The custody note used that filename before version 0.18, and the pointer keeps old links working.
+
+This repository moved from `johnzilla/notes` in October 2026. Old links redirect here.
