@@ -56,13 +56,6 @@ Version 0.3, peer review draft. See the [changelog](which-code-actually-runs.md#
 
 A note on fallbacks in software that makes or uses keys. It defines the selection between two ways to do a job, and the difference between code that is present and code that is reached. It reads two public records and states what the release checks leave open.
 
-**[What Can You Check About a Prem Confidential Inference Request?](prem-confidential-inference.md)**
-*The release and fallback notes' questions, put to one confidential AI service*
-
-Version 0.1, peer review draft. See the [changelog](prem-confidential-inference.md#changelog).
-
-A worked example for a confidential AI service. It follows the chain from hardware attestation to the software that answers a request, and sets the company's security page, its documentation, and its published verifier and policies side by side. It records what each source says and does not assess the service's security.
-
 ## Corrections
 
 Corrections are wanted. That is the reason for the name.
