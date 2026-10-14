@@ -43,7 +43,7 @@ A comparison of release processes. It separates three checks: whether a change w
 **[What Can You Check About a Confidential AI Service?](confidential-ai-service.md)**
 *Questions to ask before you trust an attested AI request*
 
-Version 0.1, peer review draft. See the [changelog](confidential-ai-service.md#changelog).
+Version 0.2, peer review draft. See the [changelog](confidential-ai-service.md#changelog).
 
 A note for reviewing AI services that run models in protected hardware. It follows the chain from a hardware signature to the software that answered one request, and describes seven patterns in which a passing attestation can mean less than it appears. It describes kinds of deployments and names no company.
 
