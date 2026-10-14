@@ -47,6 +47,13 @@ Version 0.2, peer review draft. See the [changelog](confidential-ai-service.md#c
 
 A note for reviewing AI services that run models in protected hardware. It follows the chain from a hardware signature to the software that answered one request, and describes seven patterns in which a passing attestation can mean less than it appears. It describes kinds of deployments and names no company.
 
+**[What Can You Check About a Package You Install?](what-can-you-check-about-a-package.md)**
+*Questions to ask about the step between a project and your machine*
+
+Version 0.1, peer review draft. See the [changelog](what-can-you-check-about-a-package.md#changelog).
+
+A comparison of two package registries and their install tools: the Python Package Index with pip, and the npm registry with npm. It follows a package from the maintainer's publish step to the installer, and records each registry's own documentation on publishing credentials, provenance, replacing files, code that runs at install, pinning, and withdrawal. It compares mechanisms and does not rank them.
+
 ### Notes that apply the method
 
 **[What Can You Check About an embit Release?](embit-release-records.md)**

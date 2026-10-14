@@ -1,6 +1,6 @@
 # Style guide
 
-Rules for editing the notes in the more eyes project. The general notes are [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md), [What Can You Check About a Software Release?](what-can-you-check-about-a-release.md), and [What Can You Check About a Confidential AI Service?](confidential-ai-service.md). The notes that apply the method are [What Can You Check About an embit Release?](embit-release-records.md) and [Which Code Actually Runs?](which-code-actually-runs.md). They apply to every change, by any author. Check a change against this page before you commit it.
+Rules for editing the notes in the more eyes project. The general notes are [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md), [What Can You Check About a Software Release?](what-can-you-check-about-a-release.md), [What Can You Check About a Confidential AI Service?](confidential-ai-service.md), and [What Can You Check About a Package You Install?](what-can-you-check-about-a-package.md). The notes that apply the method are [What Can You Check About an embit Release?](embit-release-records.md) and [Which Code Actually Runs?](which-code-actually-runs.md). They apply to every change, by any author. Check a change against this page before you commit it.
 
 Section numbers in the rules, such as §1.1 and §8, refer to the custody note. Rules that differ for the release note are marked.
 
@@ -16,6 +16,7 @@ Write "Start here" and any plain-language text for the first reader. Write the t
 ## Content rules
 
 1. **No names.** Do not name products, companies, people, or specific incidents. Describe configurations, not providers. *Release note exception:* the release note, and each note that applies it to one project, names open-source projects, because these notes describe public release processes. They still do not name companies, people, or incidents. Where a record involves a person, name the role: the tagger, the commit author, a maintainer account. A key fingerprint is an artifact and can be given. *Fallback note exception:* [Which Code Actually Runs?](which-code-actually-runs.md) reads public incident records, so it names a product and its library, and it cites the publisher of each account in its References. In its text it uses roles: the maker, an independent analysis. It records each account as that party's statement, and it leaves out loss figures and attribution. It states what each project's public documents say, and it does not rank the projects.
+   *Registry exception:* [What Can You Check About a Package You Install?](what-can-you-check-about-a-package.md) names public package registries and their open-source install tools, because it compares their documented mechanisms. It describes each registry through that registry's own documentation, and it names no project published there, no maintainer, and no company that operates a registry.
    *Technology names:* a note may name a standard technology or specification, such as a signature scheme, a hardware isolation design (AMD SEV-SNP, Intel TDX), or an RFC, when it describes how that mechanism works. The name includes any vendor prefix that is part of the technology's conventional name. That name is a term, not a provider. The note does not otherwise name a company that sells, builds, or operates the technology, unless another exception applies.
 2. **Conditions, not verdicts.** State what a protocol does and what evidence a claim needs. Do not state that a product or design is safe or unsafe. Use only the result terms in §1.1.
 3. **Cite mechanism claims.** A statement about how a protocol or signature scheme works needs a public specification. Pin each source to a version in the References section. Where a web page cannot be pinned, record the date it was read.
@@ -41,6 +42,7 @@ Each note has its own tag prefix, so that every tag names one note and one versi
 | [Which Code Actually Runs?](which-code-actually-runs.md) | `which-code-v` | `which-code-v0.3` |
 | [What Can You Check About an embit Release?](embit-release-records.md) | `embit-v` | `embit-v0.6` |
 | [What Can You Check About a Confidential AI Service?](confidential-ai-service.md) | `confidential-v` | `confidential-v0.1` |
+| [What Can You Check About a Package You Install?](what-can-you-check-about-a-package.md) | `package-v` | `package-v0.1` |
 
 - The unprefixed `v` tags belong to the custody note only. Reviewers cite them, so they keep that form.
 - A new note gets a short prefix that ends in `-v`. Add it to this table in the same change that adds the note.
