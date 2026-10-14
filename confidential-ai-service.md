@@ -6,7 +6,7 @@ It describes kinds of deployments, not companies.
 
 | Document | confidential-ai-service.md |
 | :---- | :---- |
-| **Version** | 0.1 — peer review draft |
+| **Version** | 0.2 — peer review draft |
 | **Audience** | People deciding whether to send private data to an AI service that runs in protected hardware: read [Start here](#start-here). Technical reviewers, including anyone who reviews such a service for an organization: read the full note. |
 | **Method** | Follow the chain from a hardware signature to the software that answered one request. For each link, state what the evidence shows, what it leaves open, and what a customer can check. |
 | **Changes** | See the [changelog](#changelog). |
@@ -37,7 +37,7 @@ It describes kinds of deployments, not companies.
 
 This section is for anyone weighing an AI service that promises to keep prompts private. You do not need to read code to use it. The rest of the note is the record behind each question.
 
-**What these services offer.** You send a prompt to an AI model. The service says the model runs inside protected hardware, so that the company and its cloud providers cannot read your prompt. Before your prompt is sent, your software asks the hardware for a signed report about itself. That report is called an attestation.
+**What these services offer.** You send a prompt to an AI model. The service says the model runs inside protected hardware, so that the company and its cloud providers cannot read your prompt. Before your prompt is sent, your software asks the service for a report about its hardware. The hardware signs that report about itself, and the service returns it. The report is called an attestation.
 
 **What an attestation can show.** A signed report can show that real protected hardware answered, and that the report is fresh. It can also contain measurements: fingerprints of the software that the hardware started. A measurement helps only if someone compares it with a known value for approved software. Without that comparison, the report shows protected hardware, not which software ran.
 
@@ -58,13 +58,13 @@ This section is for anyone weighing an AI service that promises to keep prompts 
 
 A claim about confidential inference needs a defined object: one request, one attestation, one set of rules that judged it. "Encrypted", "attested", and "verifiable" describe different properties. None follows from the others.
 
-The custody note lists four levels of build evidence. The last is "evidence that the device runs that binary." For a remote machine, an attestation whose measurements are compared with approved values is that evidence. The fallback note asks which code runs inside a file. This note asks which software a remote machine ran, and what a customer can confirm about it. See [Who Can Move Your Bitcoin? §3](who-can-move-your-bitcoin.md#3-review-the-complete-custody-lifecycle) and [Which Code Actually Runs? §1](which-code-actually-runs.md#1-what-the-note-establishes).
+The custody note lists four levels of build evidence. The last is "evidence that the device runs that binary." For a remote machine, that evidence has two parts. Measurements compared with approved values show that the machine started a particular image: the identity stage in [§2](#2-the-verification-chain). Route evidence shows that the machine served your request: the route stage. Neither part supplies the other. The fallback note asks which code runs inside a file. This note asks which software a remote machine ran, and what a customer can confirm about it. See [Who Can Move Your Bitcoin? §3](who-can-move-your-bitcoin.md#3-review-the-complete-custody-lifecycle) and [Which Code Actually Runs? §1](which-code-actually-runs.md#1-what-the-note-establishes).
 
-This note describes kinds of deployments. It is drawn from the public documentation and source code of confidential AI services, read in October 2026, and names none of them. The roles and terms follow the IETF architecture for remote attestation, RFC 9334.
+This note describes kinds of deployments and names none. §3 describes design patterns that a deployment can use. The note makes no statement about any particular service. The roles and terms follow the IETF architecture for remote attestation, RFC 9334.
 
 ### 1.1 Evidence
 
-A finding about a specific service should record: **claim; service and date; public source or inspected artifact; verification performed; result; unresolved.** Use the result terms and the fixed entries in the [release note §1.1](what-can-you-check-about-a-release.md#11-evidence). A statement by a service about itself is recorded as that service's statement.
+A finding about a specific service should record: **claim; service and date; public source or inspected artifact; verification performed; result; unresolved.** Use the result terms in the [custody note §1.1](who-can-move-your-bitcoin.md#11-evidence-and-verdicts) and the fixed entries in the [release note §1.1](what-can-you-check-about-a-release.md#11-evidence). A statement by a service about itself is recorded as that service's statement.
 
 ### 1.2 Terms
 
@@ -100,7 +100,7 @@ RFC 9334 describes freshness by nonce: "an unpredictable nonce is sent by the ap
 
 ## 3. Where a pass can mean less than it appears
 
-Each pattern below occurs in public documentation or code read for this note. Each is a design choice with a reason. None is a fault in itself. The question in each case is what a pass then establishes.
+Each pattern below is a design choice that a deployment can make, and each has a reason. None is a fault in itself. The question in each case is what a pass then establishes.
 
 ### 3.1 Measurements that are not compared
 
@@ -170,7 +170,7 @@ Each pattern below occurs in public documentation or code read for this note. Ea
 
 A service often publishes a summary security page, technical documentation, a status or roadmap page, and source code. They are all the service's own statements, and they can describe one feature at different levels of detail.
 
-In the material read for this note, a summary page could describe in the present tense a feature that the same service's status page listed as planned. Examples are transparency logs, open-source images, and matched builds. The technical documentation was the more specific source, and in some cases the more candid one.
+A summary page and a status page can describe the same feature differently: one in the present tense, the other as planned. Transparency logs, open-source images, and repeatable builds are features worth checking this way. Where two sources differ, the more specific source is the better guide to what exists on the date read.
 
 For each claim on a summary page:
 
@@ -196,7 +196,7 @@ For each claim on a summary page:
 
 - This note describes kinds of deployments. It names no service, and it is not a finding about any organization or person.
 - Hardware side channels, compromise of a chip vendor's keys, and metadata exposure are outside this note.
-- The patterns in §3 were drawn from public material read in October 2026. They are not a survey. The note makes no claim about how common any pattern is.
+- The patterns in §3 are design patterns that can occur. They are not a survey, and the note makes no statement about any particular service. The note makes no claim about how common any pattern is.
 - A pattern in §3 is a design choice. Its presence does not show that a service is unsafe, and its absence does not show that a service is safe.
 - A missing artifact means only that the claim is not shown. The evidence may exist and not have been read.
 
@@ -207,14 +207,15 @@ Each source is listed once with the version consulted and the sections that cite
 | Reference | What it defines | Cited in |
 | :---- | :---- | :---- |
 | [RFC 9334](https://www.rfc-editor.org/rfc/rfc9334.html) | Remote ATtestation procedureS (RATS) Architecture: roles, evidence, reference values, appraisal policy, and freshness. RFCs are immutable once published. | §1, §1.2, §2 |
-| [What Can You Check About a Software Release?](what-can-you-check-about-a-release.md) | The three checks and the result terms | §1.1, §1.2, §3.7 |
-| [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md) | The four levels of build evidence | §1 |
+| [What Can You Check About a Software Release?](what-can-you-check-about-a-release.md) | The three checks and the fixed entries | §1.1, §1.2, §3.7 |
+| [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md) | The four levels of build evidence, and the result terms | §1, §1.1 |
 | [Which Code Actually Runs?](which-code-actually-runs.md) | Selection between two ways to do a job | §1 |
 
 ## Changelog
 
-Newest first. Versioning follows [STYLE.md](STYLE.md).
+Newest first. Versioning follows [STYLE.md](STYLE.md). Version tags use the prefix `confidential-v`, and each version links to its tagged text.
 
 | Version | Change |
 | :---- | :---- |
-| 0.1 — 14 October 2026 | First draft. The verification chain, seven patterns in which a pass can mean less than it appears, a method for reading a service's own sources side by side, and reviewable claims. Names no service. |
+| [0.2](https://github.com/more-eyes/notes/blob/confidential-v0.2/confidential-ai-service.md) — 14 October 2026 | Review fixes. Describes the seven patterns in §3 as design patterns that can occur, and removes the statements in §1, §3, §4, and §6 that the patterns were drawn from material read for the note, since that material is not recorded. Turns the §4 observation into guidance. Splits the §1 claim about the custody note's fourth level of build evidence into the identity and route stages. Corrects the §1.1 reference: the result terms are in the custody note. In Start here, the service returns a report that the hardware signs. |
+| [0.1](https://github.com/more-eyes/notes/blob/confidential-v0.1/confidential-ai-service.md) — 14 October 2026 | First draft. The verification chain, seven patterns in which a pass can mean less than it appears, a method for reading a service's own sources side by side, and reviewable claims. Names no service. |
