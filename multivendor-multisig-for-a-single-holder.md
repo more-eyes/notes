@@ -6,7 +6,7 @@ It describes kinds of setups, not companies.
 
 | Document | multivendor-multisig-for-a-single-holder.md |
 | :---- | :---- |
-| **Version** | 0.2 — draft |
+| **Version** | 0.3 — draft |
 | **Audience** | People who hold their own bitcoin and have decided on a multivendor multisig: read [Start here](#start-here), then §2 to §10 as the job reaches each step. Technical reviewers: read the full note and its [References](#12-references). |
 | **Method** | Take the setup as it is usually pitched: several keys, devices from different makers, backups in different places. Write down every thing a single holder has to make, place, check, and keep doing for the pitch's promises to hold. Tie each step to the promise it serves. |
 | **Changes** | See the [changelog](#changelog). |
@@ -111,7 +111,7 @@ In both setups, a thief who gets enough keys to spend leaves you too few to race
 
 **Keep each device with its own backup, or count the key twice.** A device at home and its backup words at Place 2 put the same key in two places. That helps against loss, because both copies must be lost. It hurts against theft, because either copy gives the key.
 
-**What the places give you.** Each place in these examples holds no more than t−1 keys, and a copy of the setup record:
+**What the places give you.** In these examples each key is in exactly one place. Each place holds no more than t−1 keys, and a copy of the setup record:
 
 | Setup | Keys per place | Places a thief must reach | Places you can lose and still spend |
 | :---- | :---- | :---- | :---- |
@@ -120,7 +120,18 @@ In both setups, a thief who gets enough keys to spend leaves you too few to race
 | **3-of-5 in 4 places** | 2, 1, 1, 1 | 2 | 1 |
 | **3-of-5 in 5 places** | 1, 1, 1, 1, 1 | 3 | 2 |
 
-The arithmetic follows from §2. A 3-of-5 in fewer than five places gives the same protection against lost and broken-into places as a 2-of-3 in three. It still covers more losses of single copies, such as one set of backup words that is damaged while its place is fine. The extra protection against places comes only with five separate places.
+The arithmetic follows from §2. A 3-of-5 in fewer than five places gives the same protection against lost and broken-into places as a 2-of-3 in three. It still covers more losses of single copies, such as one set of backup words that is damaged while its place is fine. With one place per key, the extra protection against places comes only with five separate places.
+
+**Copies of keys in more places.** Keeping a key in two places changes these counts. It can let a setup survive more lost places, but each extra copy is one more place a thief can take that key from, and one more place to visit and check.
+
+| Setup, any two places lost | Keys per place | Places a thief must reach |
+| :---- | :---- | :---- |
+| **2-of-3, one place per key** | Not possible: losing two of three places leaves one key | — |
+| **2-of-3 in 5 places, with copies** | A, A, B, B, C | 2 |
+| **3-of-5, one place per key, 5 places** | A, B, C, D, E | 3 |
+| **3-of-5 in 4 places, with copies** | A; B and C; B and D; B and E | 2 |
+
+Five places is the fewest for a 2-of-3 that survives any two lost places. Four places is the fewest for a 3-of-5, and only with copies. A 3-of-5 that survives any two lost places and still needs a thief to reach three places takes five separate places.
 
 **What makes places separate.** For each pair of places, ask what single event reaches both: the same building, the same street in a flood, the same household, the same person with keys to both. A place you cannot reach for a month, such as a box at a bank that has closed for a holiday, is a place you have lost for that month.
 
@@ -208,7 +219,7 @@ A step that has not been practiced is a step you do not know works. Practice wit
 | **Sets of backup words** | 3 | 5 |
 | **Copies of the setup record** | One with each set of backup words, or enough to survive every planned loss | Same |
 | **Places, so no place holds t keys** | At least 3 | At least 3 |
-| **Places, so any two can be lost** | Not possible: losing two places leaves at most one key | 5 |
+| **Places, so any two can be lost** | With one place per key: not possible. With copies: 5, and a thief needs 2 ([§3](#3-places-where-the-keys-go)) | With one place per key: 5, and a thief needs 3. With copies: 4, and a thief needs 2 ([§3](#3-places-where-the-keys-go)) |
 | **Trips per spend, if home is one place** | 1 | 2 |
 | **Checks on each device's screen at setup** | Threshold, fingerprints, first address | Same |
 | **Practice spends with a place missing** | 3, one per place | One for each planned loss |
@@ -249,7 +260,7 @@ Put the same questions to each maker. A maker whose answers you have checked sti
 
 - No signing device or coordinator was tested for this note. Whether a given device registers a wallet, shows the threshold and fingerprints, or checks change ([§5](#5-setup-day), [§6](#6-what-a-spend-looks-like)) has to be checked on that device.
 - The steps in §5 to §8 have not been carried out end to end for this note. They are drawn from the specifications and the custody note, not from a recorded run.
-- The counts in the §3 and §9 tables were worked by hand and have not had a second check.
+- The counts in the §3 and §9 tables were checked by an exhaustive search over every way of placing copies of the keys, for up to seven places. The search script is not part of the note.
 - The questions in §10 have not been put to any device maker for this note.
 
 ## 12. References
@@ -276,5 +287,6 @@ Newest first. Versioning follows [STYLE.md](STYLE.md). Version tags use the pref
 
 | Version | Change |
 | :---- | :---- |
+| [0.3](https://github.com/more-eyes/notes/blob/multisig-v0.3/multivendor-multisig-for-a-single-holder.md) — 23 October 2026 | Review fixes. §3 states that its first table puts each key in one place, and adds a table for copies of keys: a 2-of-3 survives any two lost places in five places with copies, and a 3-of-5 in four places with copies, each with a thief needing two places. The §9 row for two lost places now carries the one-place-per-key condition. Unresolved records how the counts were checked. |
 | [0.2](https://github.com/more-eyes/notes/blob/multisig-v0.2/multivendor-multisig-for-a-single-holder.md) — 23 October 2026 | First release. The work a single holder does to set up, place, spend from, practice, and keep up a plain 2-of-3 or 3-of-5 multisig with devices from different makers, and questions to put to each device maker that point to the other notes. Names no device or company. The text is the 0.1 draft with only the version line and this changelog changed. |
 | 0.1 — 23 October 2026 | Not released. The tag `multisig-v0.1` was created on commit `fc1ee71` before the note was merged, and does not contain this note. Tags are not moved or deleted, so the note is released as 0.2. |
