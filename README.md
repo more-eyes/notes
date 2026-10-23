@@ -47,6 +47,13 @@ Version 0.2, peer review draft. See the [changelog](confidential-ai-service.md#c
 
 A note for reviewing AI services that run models in protected hardware. It follows the chain from a hardware signature to the software that answered one request, and describes seven patterns in which a passing attestation can mean less than it appears. It describes kinds of deployments and names no company.
 
+**[What Does Multivendor Multisig Take for One Holder?](multivendor-multisig-for-a-single-holder.md)**
+*You have decided to do it. Now what?*
+
+Version 0.2, draft. See the [changelog](multivendor-multisig-for-a-single-holder.md#changelog).
+
+The work list for one person who holds bitcoin in a 2-of-3 or 3-of-5 multisig with devices from different makers. It starts with questions to put to each device maker, which point to the other notes. Then it covers making the keys, keeping the setup record, choosing places, spending, practice, and upkeep, and ties each step to the promise it serves. It describes kinds of setups and names no company.
+
 ### Notes that apply the method
 
 **[What Can You Check About an embit Release?](embit-release-records.md)**
