@@ -6,7 +6,7 @@ It describes kinds of setups, not companies.
 
 | Document | multivendor-multisig-for-a-single-holder.md |
 | :---- | :---- |
-| **Version** | 0.1 — draft |
+| **Version** | 0.2 — draft |
 | **Audience** | People who hold their own bitcoin and have decided on a multivendor multisig: read [Start here](#start-here), then §2 to §10 as the job reaches each step. Technical reviewers: read the full note and its [References](#12-references). |
 | **Method** | Take the setup as it is usually pitched: several keys, devices from different makers, backups in different places. Write down every thing a single holder has to make, place, check, and keep doing for the pitch's promises to hold. Tie each step to the promise it serves. |
 | **Changes** | See the [changelog](#changelog). |
@@ -272,8 +272,9 @@ Each source is listed once with the version consulted and the sections that cite
 
 ## Changelog
 
-Newest first. Versioning follows [STYLE.md](STYLE.md). Version tags use the prefix `multisig-v`, and each version links to its tagged text.
+Newest first. Versioning follows [STYLE.md](STYLE.md). Version tags use the prefix `multisig-v`, and each released version links to its tagged text.
 
 | Version | Change |
 | :---- | :---- |
-| [0.1](https://github.com/more-eyes/notes/blob/multisig-v0.1/multivendor-multisig-for-a-single-holder.md) — 23 October 2026 | First draft. The work a single holder does to set up, place, spend from, practice, and keep up a plain 2-of-3 or 3-of-5 multisig with devices from different makers, and questions to put to each device maker that point to the other notes. Names no device or company. |
+| [0.2](https://github.com/more-eyes/notes/blob/multisig-v0.2/multivendor-multisig-for-a-single-holder.md) — 23 October 2026 | First release. The work a single holder does to set up, place, spend from, practice, and keep up a plain 2-of-3 or 3-of-5 multisig with devices from different makers, and questions to put to each device maker that point to the other notes. Names no device or company. The text is the 0.1 draft with only the version line and this changelog changed. |
+| 0.1 — 23 October 2026 | Not released. The tag `multisig-v0.1` was created on commit `fc1ee71` before the note was merged, and does not contain this note. Tags are not moved or deleted, so the note is released as 0.2. |
