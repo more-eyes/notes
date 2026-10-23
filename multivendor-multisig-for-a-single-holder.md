@@ -6,17 +6,18 @@ It describes kinds of setups, not companies.
 
 | Document | multivendor-multisig-for-a-single-holder.md |
 | :---- | :---- |
-| **Version** | 0.3 — draft |
+| **Version** | 0.4 — draft |
 | **Audience** | People who hold their own bitcoin and have decided on a multivendor multisig: read [Start here](#start-here), then §2 to §10 as the job reaches each step. Technical reviewers: read the full note and its [References](#12-references). |
 | **Method** | Take the setup as it is usually pitched: several keys, devices from different makers, backups in different places. Write down every thing a single holder has to make, place, check, and keep doing for the pitch's promises to hold. Tie each step to the promise it serves. |
 | **Changes** | See the [changelog](#changelog). |
-| **Scope** | One holder, a plain 2-of-3 or 3-of-5 multisig, no other spending paths, no other people. Not a review method: for that, see [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md). Not a ranking of setups or devices. |
+| **Scope** | One holder, a plain 2-of-3 or 3-of-5 multisig, no other spending paths, no other people. Written for signing devices; [§1.2](#12-signing-with-software-instead-of-devices) covers signing with software instead. Not a review method: for that, see [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md). Not a ranking of setups or devices. |
 
 ## Contents
 
 - [Start here](#start-here)
 - [1. What the note covers](#1-what-the-note-covers)
   - [1.1 Terms](#11-terms)
+  - [1.2 Signing with software instead of devices](#12-signing-with-software-instead-of-devices)
 - [2. What the numbers give you](#2-what-the-numbers-give-you)
 - [3. Places: where the keys go](#3-places-where-the-keys-go)
 - [4. The setup record](#4-the-setup-record)
@@ -55,6 +56,8 @@ This section is for anyone who has decided to hold bitcoin in a "multivendor mul
 
 **2-of-3 or 3-of-5?** More keys do not give you more protection unless you also use more places, more trips, and more practice. A 3-of-5 kept in three places protects against lost places no better than a 2-of-3 kept in three places. The table in [§3](#3-places-where-the-keys-go) shows why.
 
+**Signing with software only.** Some setups use no signing devices. One wallet program, on computers kept offline, makes every key and signs. That is the opposite of multivendor: one program instead of several makers. The third promise then rests on that one program. Several steps change too: how the keys are made, what the backups are, and where you read before you sign. See [§1.2](#12-signing-with-software-instead-of-devices).
+
 **What this note does not do.** It does not say that multisig is right for you, or name any device or company. It does not cover inheritance, sharing keys with family, or wallets with timed recovery paths. Adding any other person or company to the setup changes what each promise depends on. See [§1](#1-what-the-note-covers). It lists the work so you can see the whole job before you start.
 
 ## 1. What the note covers
@@ -82,6 +85,24 @@ The note makes no claim about how often any step fails. It does not say that a s
 | **Setup record** | The wallet descriptor: a short text that lists every key's public part, where each key came from, the threshold, and the address type. A wallet needs it to find and spend the coins. See [§4](#4-the-setup-record). [Descriptor format (BIP 380)](https://bips.dev/380/) |
 | **Coordinator** | The wallet app on the holder's computer or phone. It builds the wallet from the setup record, shows the balance, and builds transactions for the devices to sign. It touches every key's public part and every transaction. |
 | **Unsigned transaction** | A file (a PSBT) that carries a payment from the coordinator to each device, and carries each device's signature back. [Partially signed transaction format (BIP 174)](https://bips.dev/174/) |
+| **Signing program** | A wallet program on a computer that makes keys, holds them, and signs, used in place of signing devices. See [§1.2](#12-signing-with-software-instead-of-devices). |
+
+### 1.2 Signing with software instead of devices
+
+Some setups use no signing devices. One wallet program, run on dedicated computers kept offline, makes every key and signs. Its pitch is the opposite of "multivendor": fewer parties and fewer programs, instead of several makers. The rest of this note is written for signing devices. The table shows which steps change when the signer is a program.
+
+| Step | With signing devices | With one signing program |
+| :---- | :---- | :---- |
+| **The third promise** ([§5](#5-setup-day), [§10](#10-questions-to-ask-a-device-maker)) | A defect in one maker's device reaches only the keys on that maker's devices, if no maker's devices hold t keys. | One program touches every key, so a defect in it can reach all n keys at once. The promise becomes a claim about that one program: who reviewed it, and who else rebuilt it. Put the §10 questions to the program and its publisher. [Shared components](who-can-move-your-bitcoin.md#4-independence-quorum-size-and-shared-failures) |
+| **Making keys** ([§5](#5-setup-day) step 3) | Each device makes its own key. | Often all keys are made on one computer in one session. The keys are separate, but one defect or one compromised session at creation can affect all of them. Making keys on more than one offline computer narrows that. [Key independence](who-can-move-your-bitcoin.md#4-independence-quorum-size-and-shared-failures) |
+| **Backups** ([§4](#4-the-setup-record), [§5](#5-setup-day) steps 4 and 9) | Backup words (BIP 39) on durable material. | Often the program's own key files on durable media, with no backup words. A file that holds a private key is a copy of that key, as backup words are. Restoring needs a program that reads those files and a drive that reads the media. Test a restore with a fresh copy of the program, and refresh the media on a schedule. |
+| **Spending** ([§6](#6-what-a-spend-looks-like)) | Carry the unsigned transaction to each device, or bring the keys together. | Often t key files are loaded into one offline computer for one session. That is the "bring the keys together" case: that place and that computer hold t keys until the session ends. Loading one key per session, and carrying the transaction between sessions, avoids it at the cost of more sessions. |
+| **What to read** ([§5](#5-setup-day) step 7, [§6](#6-what-a-spend-looks-like)) | Each device's own screen, with the wallet registered on the device. | The offline computer's screen, after it decodes the transaction. No separate device checks the online computer's work, so the offline computer is both the signer and the checker. Wallet registration (BIP 388) does not apply. Before you sign, check how the program shows the address, amount, fee, and change. |
+| **Upkeep** ([§8](#8-upkeep-and-when-something-goes-wrong)) | Each device's updates, on each maker's schedule. | One program and its operating system, on each computer. Each update is a new release of that program to check. [Three checks](what-can-you-check-about-a-release.md#2-three-checks) |
+
+The two columns put the same promises on different things to check. This note does not rank them.
+
+A setup can also mix the two, with some keys on devices and some in a program. Apply each column to its own keys. Count a program that holds several keys as you would count a maker whose devices hold several keys ([§5](#5-setup-day) step 2).
 
 ## 2. What the numbers give you
 
@@ -227,7 +248,7 @@ A step that has not been practiced is a step you do not know works. Practice wit
 
 ## 10. Questions to ask a device maker
 
-The third promise of the pitch rests on the device makers. You choose Maker A because of what Maker A says: about its keys, its software, its backups, its multisig support. Each claim you rely on is a claim to check before Maker A's device goes into the wallet. The other more eyes notes are written for that check. This section points to them.
+The third promise of the pitch rests on the device makers. You choose Maker A because of what Maker A says: about its keys, its software, its backups, its multisig support. Each claim you rely on is a claim to check before Maker A's device goes into the wallet. The other more eyes notes are written for that check. This section points to them. If you sign with a program instead of devices ([§1.2](#12-signing-with-software-instead-of-devices)), put the same questions to that program and its publisher. The [release note's questions](what-can-you-check-about-a-release.md#6-questions-that-make-a-claim-reviewable) apply directly.
 
 **How to judge an answer.** A good answer shows you something you can open: a document, a signed file, a build report, a test you ran yourself. A weak answer repeats the claim in different words. A weak answer does not prove a problem. It shows that the claim is not established yet. Makers publish different things, so expect different answers from Maker A, Maker B, and Maker C.
 
@@ -250,6 +271,7 @@ Put the same questions to each maker. A maker whose answers you have checked sti
 ## 11. Limits and source use
 
 - This note covers one holder and a plain t-of-n `wsh(sortedmulti(...))` wallet with no other spending path. It does not cover Taproot wallets, timed recovery paths, keys held by a service or by other people, or inheritance. For those, see [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md).
+- §1.2 describes signing with software only as far as the steps in this note change. It is not a procedure for setting up such a wallet.
 - If the holder dies or cannot act, every step in this note falls to someone who did not build the setup. That is outside this note. The custody note covers it under recovery and succession. [Recovery and succession](who-can-move-your-bitcoin.md#3-review-the-complete-custody-lifecycle)
 - This note names no device, coordinator, or company. "Maker A" and "Maker B" are labels, not products.
 - The note makes no claim about how often any step goes wrong. A setup that follows every step is not shown to be safe, and a setup that skips one is not shown to be unsafe. A skipped step means the promise that depends on it is not shown.
@@ -262,6 +284,7 @@ Put the same questions to each maker. A maker whose answers you have checked sti
 - The steps in §5 to §8 have not been carried out end to end for this note. They are drawn from the specifications and the custody note, not from a recorded run.
 - The counts in the §3 and §9 tables were checked by an exhaustive search over every way of placing copies of the keys, for up to seven places. The search script is not part of the note.
 - The questions in §10 have not been put to any device maker for this note.
+- No software-only setup was built or run for this note. §1.2 was compared against one public guide to such a setup, read on 23 October 2026. The note does not name it, under STYLE.md Content rule 1.
 
 ## 12. References
 
@@ -287,6 +310,7 @@ Newest first. Versioning follows [STYLE.md](STYLE.md). Version tags use the pref
 
 | Version | Change |
 | :---- | :---- |
+| [0.4](https://github.com/more-eyes/notes/blob/multisig-v0.4/multivendor-multisig-for-a-single-holder.md) — 23 October 2026 | Adds §1.2, which shows which steps change when one wallet program on offline computers signs instead of signing devices: the third promise, making keys, backups, spending, what to read, and upkeep. Adds a Start here paragraph, a Signing program term in §1.1, a line in §10, and a scope line. Unresolved records that no software-only setup was run. Does not rank the two. |
 | [0.3](https://github.com/more-eyes/notes/blob/multisig-v0.3/multivendor-multisig-for-a-single-holder.md) — 23 October 2026 | Review fixes. §3 states that its first table puts each key in one place, and adds a table for copies of keys: a 2-of-3 survives any two lost places in five places with copies, and a 3-of-5 in four places with copies, each with a thief needing two places. The §9 row for two lost places now carries the one-place-per-key condition. Unresolved records how the counts were checked. |
 | [0.2](https://github.com/more-eyes/notes/blob/multisig-v0.2/multivendor-multisig-for-a-single-holder.md) — 23 October 2026 | First release. The work a single holder does to set up, place, spend from, practice, and keep up a plain 2-of-3 or 3-of-5 multisig with devices from different makers, and questions to put to each device maker that point to the other notes. Names no device or company. The text is the 0.1 draft with only the version line and this changelog changed. |
 | 0.1 — 23 October 2026 | Not released. The tag `multisig-v0.1` was created on commit `fc1ee71` before the note was merged, and does not contain this note. Tags are not moved or deleted, so the note is released as 0.2. |
