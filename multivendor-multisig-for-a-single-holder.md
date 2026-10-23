@@ -55,13 +55,15 @@ This section is for anyone who has decided to hold bitcoin in a "multivendor mul
 
 **2-of-3 or 3-of-5?** More keys do not give you more protection unless you also use more places, more trips, and more practice. A 3-of-5 kept in three places protects against lost places no better than a 2-of-3 kept in three places. The table in [§3](#3-places-where-the-keys-go) shows why.
 
-**What this note does not do.** It does not say that multisig is right for you, or name any device or company. It does not cover inheritance, sharing keys with family, or wallets with timed recovery paths. It lists the work so you can see the whole job before you start.
+**What this note does not do.** It does not say that multisig is right for you, or name any device or company. It does not cover inheritance, sharing keys with family, or wallets with timed recovery paths. Adding any other person or company to the setup changes what each promise depends on. See [§1](#1-what-the-note-covers). It lists the work so you can see the whole job before you start.
 
 ## 1. What the note covers
 
 The note covers one holder and a plain threshold multisig: t of n keys can spend, and the wallet has no other spending path. It covers 2-of-3 and 3-of-5, written as `wsh(sortedmulti(...))` descriptors. [Multisig descriptors (BIP 383)](https://bips.dev/383/)
 
 The pitch is a set of promises about a deployment. The protocol enforces only the threshold: the output can be spent by valid signatures from t of the listed keys. Where the keys are, who made the devices, and whether the holder can reach them are not things the protocol checks. They are the holder's job, and that job is what this note describes.
+
+**Adding another person changes the setup, whoever they are.** A person or company becomes part of the setup if they hold a key, backup words, a copy of the setup record, or access to a place. What they can do depends on what they hold. With t keys, they can spend. With fewer, they can refuse, delay, or lose what they hold. They can also be the route by which a thief, or someone forcing a spend, reaches it. Each promise in Start here then depends partly on that party: their honesty, their security, their availability, and whether they still exist when needed. This is true whether the party is a relative, a friend, a lawyer, or a company that holds a key as a service. A party can also add a recovery route that the holder does not have alone. Whether that trade is worth making is the holder's decision. The custody note covers how to review it. [Scenario B](who-can-move-your-bitcoin.md#22-scenario-b--collaborative-custody-with-a-holder-quorum), [§4](who-can-move-your-bitcoin.md#4-independence-quorum-size-and-shared-failures)
 
 The mechanisms behind each step are described in more detail in [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md). That note is a method for reviewing a custody claim. This note is the work list for one person who builds the setup. Where a step rests on a mechanism, the section links to the custody note or to the specification.
 
@@ -122,7 +124,7 @@ The arithmetic follows from §2. A 3-of-5 in fewer than five places gives the sa
 
 **What makes places separate.** For each pair of places, ask what single event reaches both: the same building, the same street in a flood, the same household, the same person with keys to both. A place you cannot reach for a month, such as a box at a bank that has closed for a holiday, is a place you have lost for that month.
 
-**Places that belong to someone else.** A deposit box, or a drawer at a relative's house, is a place where another person controls access. With fewer than t keys there, that person cannot spend. They can refuse or delay your access, and a thief who gets into their place gets that key. Count it as a place that can be lost or broken into, and record who controls access.
+**Places that belong to someone else.** A deposit box, or a drawer at a relative's house, is a place where another person controls access. With fewer than t keys there, that person cannot spend. They can refuse or delay your access, and a thief who gets into their place gets that key. Count it as a place that can be lost or broken into, and record who controls access. [§1](#1-what-the-note-covers) covers what any added party changes.
 
 **Distance has a cost.** The farther apart the places are, the longer a spend takes ([§6](#6-what-a-spend-looks-like)), and the harder a check of each place is ([§8](#8-upkeep-and-when-something-goes-wrong)). Pick distances you can travel to when you need to, including when you are ill or away.
 
