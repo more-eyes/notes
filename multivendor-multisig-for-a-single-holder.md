@@ -6,7 +6,7 @@ It describes kinds of setups, not companies.
 
 | Document | multivendor-multisig-for-a-single-holder.md |
 | :---- | :---- |
-| **Version** | 0.4 — draft |
+| **Version** | 0.5 — draft |
 | **Audience** | People who hold their own bitcoin and have decided on a multivendor multisig: read [Start here](#start-here), then §2 to §10 as the job reaches each step. Technical reviewers: read the full note and its [References](#12-references). |
 | **Method** | Take the setup as it is usually pitched: several keys, devices from different makers, backups in different places. Write down every thing a single holder has to make, place, check, and keep doing for the pitch's promises to hold. Tie each step to the promise it serves. |
 | **Changes** | See the [changelog](#changelog). |
@@ -50,7 +50,7 @@ This section is for anyone who has decided to hold bitcoin in a "multivendor mul
 - **Keep the setup record.** The wallet needs a file that lists every key and the rules. Without it, the backups alone may not be enough to get your bitcoin back. Keep enough copies that the losses you plan for still leave one. See [§4](#4-the-setup-record).
 - **Pick the places.** No single place may hold enough keys to spend. Count devices as well as backups. See [§3](#3-places-where-the-keys-go).
 - **Check on the device, not the computer.** Your computer touches every key. Each device has to show you the wallet and the payment, and you have to read it. Devices from different makers do not protect you from a computer you do not check. See [§5](#5-setup-day) and [§6](#6-what-a-spend-looks-like).
-- **Plan the trip.** To spend, you have to reach enough keys. With keys in different places, a spend means travel, or bringing keys together for a while. See [§6](#6-what-a-spend-looks-like).
+- **Plan the trip.** To spend, you have to reach enough keys. With keys in different places, a spend means travel, or bringing keys together for a while. If a payment gets stuck because its fee is too low, fixing it takes the trips again. See [§6](#6-what-a-spend-looks-like).
 - **Practice.** Recover a key, and spend with a place missing, before you put real money in. Do it again after anything changes. See [§7](#7-practice).
 - **Keep it up.** Devices get updates, makers stop support, people move house. Each change is work. See [§8](#8-upkeep-and-when-something-goes-wrong).
 
@@ -67,6 +67,13 @@ The note covers one holder and a plain threshold multisig: t of n keys can spend
 The pitch is a set of promises about a deployment. The protocol enforces only the threshold: the output can be spent by valid signatures from t of the listed keys. Where the keys are, who made the devices, and whether the holder can reach them are not things the protocol checks. They are the holder's job, and that job is what this note describes.
 
 **Adding another person changes the setup, whoever they are.** A person or company becomes part of the setup if they hold a key, backup words, a copy of the setup record, or access to a place. What they can do depends on what they hold. With t keys, they can spend. With fewer, they can refuse, delay, or lose what they hold. They can also be the route by which a thief, or someone forcing a spend, reaches it. Each promise in Start here then depends partly on that party: their honesty, their security, their availability, and whether they still exist when needed. This is true whether the party is a relative, a friend, a lawyer, or a company that holds a key as a service. A party can also add a recovery route that the holder does not have alone. Whether that trade is worth making is the holder's decision. The custody note covers how to review it. [Scenario B](who-can-move-your-bitcoin.md#22-scenario-b--collaborative-custody-with-a-holder-quorum), [§4](who-can-move-your-bitcoin.md#4-independence-quorum-size-and-shared-failures)
+
+**When the setup stops being solo.** These are common ways another party joins. Each one changes the setup as the paragraph above describes. This note does not cover how to set any of them up.
+
+- **Inheritance.** For an heir to recover the coins, someone other than the holder has to be able to reach t keys and the setup record, and to follow every step. That person, or whoever holds the instructions, becomes part of the setup. [Recovery and succession](who-can-move-your-bitcoin.md#3-review-the-complete-custody-lifecycle)
+- **A place that belongs to someone else.** A deposit box, or a drawer in a relative's home. See [§3](#3-places-where-the-keys-go).
+- **Telling someone.** A person who knows where the places are, or knows a passphrase, holds part of the setup even without holding a key.
+- **A company that holds a key.** A service that holds one key and signs on request. [Scenario B](who-can-move-your-bitcoin.md#22-scenario-b--collaborative-custody-with-a-holder-quorum)
 
 The mechanisms behind each step are described in more detail in [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md). That note is a method for reviewing a custody claim. This note is the work list for one person who builds the setup. Where a step rests on a mechanism, the section links to the custody note or to the specification.
 
@@ -154,6 +161,19 @@ The arithmetic follows from §2. A 3-of-5 in fewer than five places gives the sa
 
 Five places is the fewest for a 2-of-3 that survives any two lost places. Four places is the fewest for a 3-of-5, and only with copies. A 3-of-5 that survives any two lost places and still needs a thief to reach three places takes five separate places.
 
+**Passphrases change the counts too.** With a passphrase on a key ([§5](#5-setup-day) step 5), the key is usable only with both its backup words and its passphrase. Each key then depends on two items, and where they are stored changes what the places give you. For a 2-of-3 with a passphrase on every key, each item stored once:
+
+| Where the passphrases are | Places | Places you can lose and still spend | Places a thief must reach |
+| :---- | :---- | :---- | :---- |
+| **No passphrases** | 3 | 1 | 2 |
+| **Each passphrase with its own words** | 3 | 1 | 2 |
+| **Each passphrase with the next key's words** (A's passphrase with B's words, B's with C's, C's with A's) | 3 | 0: losing any one place leaves one usable key | 3 |
+| **A's words and passphrase together; B's words, B's passphrase, C's words, and C's passphrase each in a place of their own** | 5 | 1 | 3 |
+
+The third row is the usual advice, to keep each passphrase away from its own words. It makes a thief reach every place, and it means one lost place locks the coins. Keeping the loss protection while making a thief reach three places takes at least five places. No layout in three or four places does both.
+
+A passphrase kept only in your memory is not in any place a burglar can reach. It is lost if you forget it, and it is reachable by anyone who can make you tell it. An heir cannot recover a key whose passphrase only you knew.
+
 **What makes places separate.** For each pair of places, ask what single event reaches both: the same building, the same street in a flood, the same household, the same person with keys to both. A place you cannot reach for a month, such as a box at a bank that has closed for a holiday, is a place you have lost for that month.
 
 **Places that belong to someone else.** A deposit box, or a drawer at a relative's house, is a place where another person controls access. With fewer than t keys there, that person cannot spend. They can refuse or delay your access, and a thief who gets into their place gets that key. Count it as a place that can be lost or broken into, and record who controls access. [§1](#1-what-the-note-covers) covers what any added party changes.
@@ -184,7 +204,7 @@ Do these steps in order, with a small amount of bitcoin, before you move savings
 2. **Get the devices.** No one maker's devices may hold t keys, or a defect at that maker reaches enough keys to spend or to lock the wallet. For a 2-of-3, that means one device each from Maker A, Maker B, and Maker C. For a 3-of-5, it means at least three makers, with no more than two devices from any one. Record where each came from, and how you checked that its software is the maker's real software. The custody note lists what to record. [Creation and supply chain](who-can-move-your-bitcoin.md#3-review-the-complete-custody-lifecycle)
 3. **Let each device make its own key.** Never type one key's backup words into another device or into a computer. A key made on one device and copied to another is one key in two places, not two keys.
 4. **Write each set of backup words on durable material.** Read each set back against the device as stored, so that a missing or wrong word shows up now, not on recovery day.
-5. **Decide about passphrases.** A BIP 39 passphrase adds a second secret to a key. If you use one, it is a further item to back up for that key. Every passphrase makes a valid key: a typo makes a different key, with no error message. If you use the same passphrase for every key, losing it can lock every key at once. Check each key's fingerprint against the setup record after you enter a passphrase. [Mnemonic to seed (BIP 39)](https://bips.dev/39/), [Shared passphrase](who-can-move-your-bitcoin.md#4-independence-quorum-size-and-shared-failures)
+5. **Decide about passphrases.** A BIP 39 passphrase adds a second secret to a key. If you use one, it is a further item to back up for that key. Every passphrase makes a valid key: a typo makes a different key, with no error message. If you use the same passphrase for every key, losing it can lock every key at once. Check each key's fingerprint against the setup record after you enter a passphrase. Write each passphrase exactly, including capitals, spaces, and punctuation. Decide where each one is stored before you make the key, and count it as a separate item: [§3](#3-places-where-the-keys-go) shows how the placement changes what the places give you. [Mnemonic to seed (BIP 39)](https://bips.dev/39/), [Shared passphrase](who-can-move-your-bitcoin.md#4-independence-quorum-size-and-shared-failures)
 6. **Build the wallet.** Export each device's xpub and fingerprint to the coordinator. The coordinator builds the setup record. Save copies as [§4](#4-the-setup-record) describes.
 7. **Register the wallet on each device that supports it, and read the screen.** The device should show the threshold and each key's fingerprint. Compare them with the setup record. Wallet registration exists because the computer running the coordinator "is considered untrusted": the device, not the computer, must show you the policy and check that change returns to the same wallet. Whether a given device does this is something to check on that device. [Wallet policies (BIP 388)](https://bips.dev/388/)
 8. **Check an address on more than one device.** Ask for the first receive address on the coordinator and on at least two devices. They must match. Then send a small amount to it.
@@ -192,6 +212,13 @@ Do these steps in order, with a small amount of bitcoin, before you move savings
 10. **Do one practice spend** of the small amount, by the route you will use for real ([§6](#6-what-a-spend-looks-like)).
 
 **What "multivendor" does and does not cover.** Devices from different makers mean that a defect in one maker's device or software reaches only the keys on that maker's devices. That protects the wallet only while those keys number fewer than t ([step 2](#5-setup-day)). The coordinator is not one of the devices. It reaches every key's public part and every transaction. If you approve what the computer shows instead of what each device shows, one bad computer, or one bad coordinator update, can mislead every device at once. The protection comes from reading each device's own screen at setup ([step 7](#5-setup-day)) and at every spend ([§6](#6-what-a-spend-looks-like)). [Shared components](who-can-move-your-bitcoin.md#4-independence-quorum-size-and-shared-failures)
+
+**Choosing and keeping the coordinator.** The coordinator is a program like any other, and it touches every key's public part and every transaction. Four things to settle about it:
+
+- **Where it gets its data.** To show a balance, a coordinator asks a server about the wallet's addresses. If that server belongs to someone else, its operator can see every address in the wallet, and so the balance and the history. A coordinator connected to your own node keeps that with you. Record which server it uses. [Privacy and coercion](who-can-move-your-bitcoin.md#5-privacy-and-coercion), [Extended keys and privacy (BIP 32)](https://bips.dev/32/)
+- **How it gets updated.** Each update is a new release. Check it as you would a device's software, and check after the update that the wallet still shows the same first address. [Release questions](what-can-you-check-about-a-release.md#6-questions-that-make-a-claim-reviewable)
+- **If it goes away.** A coordinator can stop being maintained. The setup record lets another coordinator rebuild the wallet. [§7](#7-practice) step 1 practices that.
+- **Every receive address.** The coordinator hands out the addresses you give to people who pay you. A coordinator that shows a wrong address can send a deposit somewhere else. Check each receive address on a device before you use it, not only the first one in step 8.
 
 ## 6. What a spend looks like
 
@@ -202,6 +229,12 @@ To spend, you need signatures from t devices. With the keys in different places,
 **Bring the keys together.** You bring t devices, or t sets of backup words, to one place, sign, and take them back. This is quicker. While they are together, that one place holds enough keys to spend. Record where they meet and for how long. [Signing location and exposure](who-can-move-your-bitcoin.md#3-review-the-complete-custody-lifecycle)
 
 **What a spend costs in travel.** If home is one of the places, a 2-of-3 spend is one trip to a second place. A 3-of-5 spend is two trips. A spend you need on short notice depends on reaching those places on short notice.
+
+**Spending often.** Every spend costs t signatures, and so t places reached. If you expect to spend often, that cost comes with each spend. Some holders keep a separate, smaller wallet with one key for spending, and refill it from the multisig now and then. The multisig then signs only the refills. That second wallet is a separate setup with its own backup, and this note does not cover it.
+
+**The fee is fixed when you sign.** A signed transaction carries its fee. If it is stuck because the fee was too low, both ways to raise the fee need the wallet's signatures. One is a replacement with a higher fee, signed again by t keys. The other is a second transaction that spends the change, which is in the multisig and needs t keys too. Either way, a stuck payment can cost another round of trips. Set the fee for the confirmation time you need when you sign. The person you paid can also raise the fee by spending what they received, if they are willing. Whether nodes accept a replacement depends on their relay rules, which are not part of consensus. [Fees and deadlines](who-can-move-your-bitcoin.md#31-deadlines-fees-and-reorganizations), [Opt-in replacement signaling (BIP 125)](https://bips.dev/125/)
+
+**Each deposit is a separate coin.** Every payment into the wallet becomes a separate coin to spend later. A multisig spend reveals t signatures and all n public keys for each coin it spends, so it is larger than a single-key spend, and a 3-of-5 spend is larger than a 2-of-3 spend. A spend that uses many small coins costs more in fees than one that uses a few large ones. Combining small coins into one, when fees are low, lowers later costs. It also costs a spend now, with its trips, and it shows publicly that those coins belong together. [Spend-time policy disclosure](who-can-move-your-bitcoin.md#5-privacy-and-coercion), [Multisig descriptors (BIP 383)](https://bips.dev/383/), [Transaction cost](who-can-move-your-bitcoin.md#4-independence-quorum-size-and-shared-failures)
 
 **What to read on each device.** At each signature, read the device's screen: the address you are paying, the amount, the fee, and whether the change goes back to the same wallet. The device shows you what it signs, and the coordinator may not. [Wallet policies (BIP 388)](https://bips.dev/388/), [Signer policy validation](who-can-move-your-bitcoin.md#24-scenario-d--holder-controlled-2-of-3)
 
@@ -221,6 +254,7 @@ A step that has not been practiced is a step you do not know works. Practice wit
 **Regular upkeep.**
 
 - **Device updates.** Each maker updates its devices on its own schedule. After an update, check that the device still shows the wallet, still shows the right fingerprint, and can still sign. Record who can issue updates for each device. [Update authority](who-can-move-your-bitcoin.md#3-review-the-complete-custody-lifecycle)
+- **Coordinator updates.** Check each coordinator release before you install it. Afterwards, check that the wallet still shows the same first address as the setup record. See [§5](#5-setup-day).
 - **A maker stops support.** Restore that key on another device, as tested in [§5 step 9](#5-setup-day), and register the wallet there. Use a device or program that you have checked reads backup words.
 - **Visiting the places.** On a schedule you choose, check that each place still holds what your list says and shows no sign of tampering. Check that the backup material is still readable.
 - **A place changes.** You move house, a box is closed, a relative moves. Redo the count in [§3](#3-places-where-the-keys-go) before you move anything.
@@ -238,17 +272,18 @@ A step that has not been practiced is a step you do not know works. Practice wit
 | **Makers whose claims you checked (§10)** | 3 | At least 3 |
 | **Devices, so no maker holds t keys** | 3, one each from Makers A, B, C | 5, from at least 3 makers, no more than 2 from one |
 | **Sets of backup words** | 3 | 5 |
+| **Items to store, with a passphrase on every key** | 6: words and passphrase for each key ([§3](#3-places-where-the-keys-go)) | 10 |
 | **Copies of the setup record** | One with each set of backup words, or enough to survive every planned loss | Same |
 | **Places, so no place holds t keys** | At least 3 | At least 3 |
 | **Places, so any two can be lost** | With one place per key: not possible. With copies: 5, and a thief needs 2 ([§3](#3-places-where-the-keys-go)) | With one place per key: 5, and a thief needs 3. With copies: 4, and a thief needs 2 ([§3](#3-places-where-the-keys-go)) |
-| **Trips per spend, if home is one place** | 1 | 2 |
+| **Trips per spend, if home is one place** | 1, and another round if a fee has to be raised ([§6](#6-what-a-spend-looks-like)) | 2, and another round if a fee has to be raised |
 | **Checks on each device's screen at setup** | Threshold, fingerprints, first address | Same |
 | **Practice spends with a place missing** | 3, one per place | One for each planned loss |
 | **Upkeep** | 3 devices to update, 3 places to visit | 5 devices to update, up to 5 places to visit |
 
 ## 10. Questions to ask a device maker
 
-The third promise of the pitch rests on the device makers. You choose Maker A because of what Maker A says: about its keys, its software, its backups, its multisig support. Each claim you rely on is a claim to check before Maker A's device goes into the wallet. The other more eyes notes are written for that check. This section points to them. If you sign with a program instead of devices ([§1.2](#12-signing-with-software-instead-of-devices)), put the same questions to that program and its publisher. The [release note's questions](what-can-you-check-about-a-release.md#6-questions-that-make-a-claim-reviewable) apply directly.
+The third promise of the pitch rests on the device makers. You choose Maker A because of what Maker A says: about its keys, its software, its backups, its multisig support. Each claim you rely on is a claim to check before Maker A's device goes into the wallet. The other more eyes notes are written for that check. This section points to them. The last two rows are claims a coordinator's publisher makes. If you sign with a program instead of devices ([§1.2](#12-signing-with-software-instead-of-devices)), put the same questions to that program and its publisher. The [release note's questions](what-can-you-check-about-a-release.md#6-questions-that-make-a-claim-reviewable) apply directly.
 
 **How to judge an answer.** A good answer shows you something you can open: a document, a signed file, a build report, a test you ran yourself. A weak answer repeats the claim in different words. A weak answer does not prove a problem. It shows that the claim is not established yet. Makers publish different things, so expect different answers from Maker A, Maker B, and Maker C.
 
@@ -265,12 +300,15 @@ The third promise of the pitch rests on the device makers. You choose Maker A be
 | **Keys come from a true hardware random source** | The build setting and the function that key creation calls, and a check that fails if another source is used. Code that is present is not proof that it runs. | [Which Code Actually Runs? §6](which-code-actually-runs.md#6-questions-that-make-a-claim-reviewable) |
 | **Built on a well-reviewed library** | Which library and version, how it was obtained, and which implementation inside it does the job. | [Which Code Actually Runs? §2](which-code-actually-runs.md#2-kinds-of-fallback), [the embit note](embit-release-records.md#7-questions-that-make-a-claim-reviewable) as a worked example |
 | **Audited** | The report: its subject, scope, date, and exclusions. A code review and a security test of one model answer different questions. | [Custody note §1.1](who-can-move-your-bitcoin.md#11-evidence-and-verdicts) |
+| **We never see your keys** (a coordinator) | Which server the coordinator talks to, what it sends there (addresses, xpubs, transactions), and what that server keeps. Not seeing keys is not the same as not seeing the wallet. | [§5](#5-setup-day), [Custody note §5](who-can-move-your-bitcoin.md#5-privacy-and-coercion) |
+| **Works with any device** (a coordinator) | Which address types, wallet registration flows, and file formats it supports, tested with your devices before funding. | [§5](#5-setup-day), [Scenario D](who-can-move-your-bitcoin.md#24-scenario-d--holder-controlled-2-of-3) |
 
 Put the same questions to each maker. A maker whose answers you have checked still covers only the keys on its own devices ([§5](#5-setup-day)). The shared parts, such as the coordinator and the places, are checked in the other sections of this note.
 
 ## 11. Limits and source use
 
 - This note covers one holder and a plain t-of-n `wsh(sortedmulti(...))` wallet with no other spending path. It does not cover Taproot wallets, timed recovery paths, keys held by a service or by other people, or inheritance. For those, see [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md).
+- A separate one-key wallet for spending ([§6](#6-what-a-spend-looks-like)) is outside this note.
 - §1.2 describes signing with software only as far as the steps in this note change. It is not a procedure for setting up such a wallet.
 - If the holder dies or cannot act, every step in this note falls to someone who did not build the setup. That is outside this note. The custody note covers it under recovery and succession. [Recovery and succession](who-can-move-your-bitcoin.md#3-review-the-complete-custody-lifecycle)
 - This note names no device, coordinator, or company. "Maker A" and "Maker B" are labels, not products.
@@ -284,6 +322,7 @@ Put the same questions to each maker. A maker whose answers you have checked sti
 - The steps in §5 to §8 have not been carried out end to end for this note. They are drawn from the specifications and the custody note, not from a recorded run.
 - The counts in the §3 and §9 tables were checked by an exhaustive search over every way of placing copies of the keys, for up to seven places. The search script is not part of the note.
 - The questions in §10 have not been put to any device maker for this note.
+- The passphrase counts in §3 were checked by an exhaustive search over every placement of three sets of words and three passphrases, each stored once, in three to six places, for a 2-of-3 only. The search script is not part of the note.
 - No software-only setup was built or run for this note. §1.2 was compared against one public guide to such a setup, read on 23 October 2026. The note does not name it, under STYLE.md Content rule 1.
 
 ## 12. References
@@ -292,15 +331,16 @@ Each source is listed once with the version consulted and the sections that cite
 
 | Reference | What it defines | Cited in |
 | :---- | :---- | :---- |
-| [BIP 32](https://github.com/bitcoin/bips/blob/927b6de9915c9262615a6399de51b200f81e5aa4/bip-0032.mediawiki) | Hierarchical Deterministic Wallets: extended keys, and what sharing an extended public key reveals | §4 |
+| [BIP 32](https://github.com/bitcoin/bips/blob/927b6de9915c9262615a6399de51b200f81e5aa4/bip-0032.mediawiki) | Hierarchical Deterministic Wallets: extended keys, and what sharing an extended public key reveals | §4, §5 |
 | [BIP 39](https://github.com/bitcoin/bips/blob/927b6de9915c9262615a6399de51b200f81e5aa4/bip-0039.mediawiki) | Mnemonic code for generating deterministic keys, including the optional passphrase | §1.1, §5, §10 |
 | [BIP 48](https://github.com/bitcoin/bips/blob/927b6de9915c9262615a6399de51b200f81e5aa4/bip-0048.mediawiki) | Multi-Script Hierarchy for Multi-Sig Wallets: the `m/48'` derivation path and script type levels | §4 |
+| [BIP 125](https://github.com/bitcoin/bips/blob/927b6de9915c9262615a6399de51b200f81e5aa4/bip-0125.mediawiki) | Opt-in Full Replace-by-Fee Signaling: the rules for replacing an unconfirmed transaction with a higher-fee one | §6 |
 | [BIP 174](https://github.com/bitcoin/bips/blob/927b6de9915c9262615a6399de51b200f81e5aa4/bip-0174.mediawiki) | Partially Signed Bitcoin Transaction format and its roles | §1.1, §5, §6 |
 | [BIP 380](https://github.com/bitcoin/bips/blob/927b6de9915c9262615a6399de51b200f81e5aa4/bip-0380.mediawiki) | Output Script Descriptors: general format, and key origin information | §1.1, §4, §5 |
-| [BIP 383](https://github.com/bitcoin/bips/blob/927b6de9915c9262615a6399de51b200f81e5aa4/bip-0383.mediawiki) | Multisig Output Script Descriptors: `multi()` and `sortedmulti()` | §1, §4 |
+| [BIP 383](https://github.com/bitcoin/bips/blob/927b6de9915c9262615a6399de51b200f81e5aa4/bip-0383.mediawiki) | Multisig Output Script Descriptors: `multi()` and `sortedmulti()` | §1, §4, §6 |
 | [BIP 388](https://github.com/bitcoin/bips/blob/927b6de9915c9262615a6399de51b200f81e5aa4/bip-0388.mediawiki) | Wallet Policies for Descriptor Wallets, including policy registration on a signing device | §5, §6, §10 |
-| [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md) | Review method; Scenario D (holder-controlled 2-of-3); the custody lifecycle; independence and quorum size; coercion; questions for device claims | §1, §2, §3, §4, §5, §6, §8, §10, §11 |
-| [What Can You Check About a Software Release?](what-can-you-check-about-a-release.md) | The three checks, and questions for release claims | §10 |
+| [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md) | Review method; Scenario D (holder-controlled 2-of-3); the custody lifecycle; independence and quorum size; coercion; questions for device claims | §1, §1.2, §2, §3, §4, §5, §6, §8, §10, §11 |
+| [What Can You Check About a Software Release?](what-can-you-check-about-a-release.md) | The three checks, and questions for release claims | §1.2, §5, §10 |
 | [Which Code Actually Runs?](which-code-actually-runs.md) | Fallbacks in software that makes or uses keys, and questions for those claims | §10 |
 | [What Can You Check About an embit Release?](embit-release-records.md) | A worked example of the release questions put to one library | §10 |
 
@@ -310,6 +350,7 @@ Newest first. Versioning follows [STYLE.md](STYLE.md). Version tags use the pref
 
 | Version | Change |
 | :---- | :---- |
+| [0.5](https://github.com/more-eyes/notes/blob/multisig-v0.5/multivendor-multisig-for-a-single-holder.md) — 23 October 2026 | Practical gaps. §3 adds passphrase placements for a 2-of-3: the usual advice to store each passphrase away from its own words leaves no place that can be lost, and keeping that protection while making a thief reach three places takes five places. §5 adds choosing and keeping the coordinator, and extends step 5. §6 adds spending often, fees fixed at signing (raising one takes t signatures again), and coin count and size. §1 lists common ways a setup stops being solo, with links to the custody note. Start here, §8, §9, §10, limits, Unresolved, and References updated. Adds BIP 125. |
 | [0.4](https://github.com/more-eyes/notes/blob/multisig-v0.4/multivendor-multisig-for-a-single-holder.md) — 23 October 2026 | Adds §1.2, which shows which steps change when one wallet program on offline computers signs instead of signing devices: the third promise, making keys, backups, spending, what to read, and upkeep. Adds a Start here paragraph, a Signing program term in §1.1, a line in §10, and a scope line. Unresolved records that no software-only setup was run. Does not rank the two. |
 | [0.3](https://github.com/more-eyes/notes/blob/multisig-v0.3/multivendor-multisig-for-a-single-holder.md) — 23 October 2026 | Review fixes. §3 states that its first table puts each key in one place, and adds a table for copies of keys: a 2-of-3 survives any two lost places in five places with copies, and a 3-of-5 in four places with copies, each with a thief needing two places. The §9 row for two lost places now carries the one-place-per-key condition. Unresolved records how the counts were checked. |
 | [0.2](https://github.com/more-eyes/notes/blob/multisig-v0.2/multivendor-multisig-for-a-single-holder.md) — 23 October 2026 | First release. The work a single holder does to set up, place, spend from, practice, and keep up a plain 2-of-3 or 3-of-5 multisig with devices from different makers, and questions to put to each device maker that point to the other notes. Names no device or company. The text is the 0.1 draft with only the version line and this changelog changed. |
