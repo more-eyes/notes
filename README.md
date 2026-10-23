@@ -50,7 +50,7 @@ A note for reviewing AI services that run models in protected hardware. It follo
 **[What Does Multivendor Multisig Take for One Holder?](multivendor-multisig-for-a-single-holder.md)**
 *You have decided to do it. Now what?*
 
-Version 0.4, draft. See the [changelog](multivendor-multisig-for-a-single-holder.md#changelog).
+Version 0.5, draft. See the [changelog](multivendor-multisig-for-a-single-holder.md#changelog).
 
 The work list for one person who holds bitcoin in a 2-of-3 or 3-of-5 multisig with devices from different makers. It starts with questions to put to each device maker, which point to the other notes. Then it covers making the keys, keeping the setup record, choosing places, spending, practice, and upkeep, and ties each step to the promise it serves. It also shows which steps change when one wallet program signs instead of devices. It describes kinds of setups and names no company.
 
