@@ -1,6 +1,6 @@
 # Style guide
 
-Rules for editing the notes in the more eyes project. The general notes are [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md), [What Can You Check About a Software Release?](what-can-you-check-about-a-release.md), and [What Can You Check About a Confidential AI Service?](confidential-ai-service.md). The notes that apply the method are [What Can You Check About an embit Release?](embit-release-records.md) and [Which Code Actually Runs?](which-code-actually-runs.md). They apply to every change, by any author. Check a change against this page before you commit it.
+Rules for editing the notes in the more eyes project. The general notes are [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md), [What Can You Check About a Software Release?](what-can-you-check-about-a-release.md), [What Can You Check About a Confidential AI Service?](confidential-ai-service.md), and [What Does Multivendor Multisig Take for One Holder?](multivendor-multisig-for-a-single-holder.md). The notes that apply the method are [What Can You Check About an embit Release?](embit-release-records.md) and [Which Code Actually Runs?](which-code-actually-runs.md). They apply to every change, by any author. Check a change against this page before you commit it.
 
 Section numbers in the rules, such as §1.1 and §8, refer to the custody note. Rules that differ for the release note are marked.
 
@@ -41,6 +41,7 @@ Each note has its own tag prefix, so that every tag names one note and one versi
 | [Which Code Actually Runs?](which-code-actually-runs.md) | `which-code-v` | `which-code-v0.3` |
 | [What Can You Check About an embit Release?](embit-release-records.md) | `embit-v` | `embit-v0.6` |
 | [What Can You Check About a Confidential AI Service?](confidential-ai-service.md) | `confidential-v` | `confidential-v0.1` |
+| [What Does Multivendor Multisig Take for One Holder?](multivendor-multisig-for-a-single-holder.md) | `multisig-v` | `multisig-v0.1` |
 
 - The unprefixed `v` tags belong to the custody note only. Reviewers cite them, so they keep that form.
 - A new note gets a short prefix that ends in `-v`. Add it to this table in the same change that adds the note.
