@@ -39,7 +39,7 @@ When a change touches a claim, consequence, citation, or reader-facing text (STY
 1. Raise the note's version line.
 2. Add a changelog row at the top. Link the version to `https://github.com/more-eyes/notes/blob/<prefix><X.Y>/<file>`, using the note's prefix from the "Version tags" table in STYLE.md. The link will resolve once the maintainer creates the tag.
 3. Update the version line for the note in the README.
-4. In the pull request, state the tag the maintainer should create and the commit it should point to.
+4. In the pull request, state the tag the maintainer should create. It goes on the pull request's merge commit, so give the content commit for reference and say that the merge commit's SHA comes after the merge.
 
 Typo-only edits, and link changes with the same target, do not change the version.
 

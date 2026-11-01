@@ -64,7 +64,7 @@ A comparison of two package registries and their install tools: the Python Packa
 **[What Can You Check About a Vulnerability Report?](what-can-you-check-about-a-vulnerability-report.md)**
 *Questions to ask before you decide it applies to you*
 
-Version 0.2, draft. See the [changelog](what-can-you-check-about-a-vulnerability-report.md#changelog).
+Version 0.3, draft. See the [changelog](what-can-you-check-about-a-vulnerability-report.md#changelog).
 
 A note for reading a security report about software you use. It separates four questions: whether a specific flaw is defined, whether the flawed code is in your copy, whether an attacker can reach it on your system, and what has been shown. It reads the CVE record format, CVSS versions 4.0 and 3.1, OpenVEX, the Linux kernel's CVE process, and Debian's security FAQ against those questions. It names no vulnerability and rates none.
 
