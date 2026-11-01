@@ -61,6 +61,13 @@ Version 0.1, peer review draft. See the [changelog](what-can-you-check-about-a-p
 
 A comparison of two package registries and their install tools: the Python Package Index with pip, and the npm registry with npm. It follows a package from the maintainer's publish step to the installer, and records each registry's own documentation on publishing credentials, provenance, replacing files, code that runs at install, pinning, and withdrawal. It compares mechanisms and does not rank them.
 
+**[What Can You Check About a Vulnerability Report?](what-can-you-check-about-a-vulnerability-report.md)**
+*Questions to ask before you decide it applies to you*
+
+Version 0.1, draft. See the [changelog](what-can-you-check-about-a-vulnerability-report.md#changelog).
+
+A note for reading a security report about software you use. It separates four questions: whether a specific flaw is defined, whether the flawed code is in your copy, whether an attacker can reach it on your system, and what has been shown. It reads the CVE record format, CVSS versions 4.0 and 3.1, OpenVEX, the Linux kernel's CVE process, and Debian's security FAQ against those questions. It names no vulnerability and rates none.
+
 ### Notes that apply the method
 
 **[What Can You Check About an embit Release?](embit-release-records.md)**
