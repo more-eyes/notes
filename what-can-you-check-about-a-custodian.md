@@ -6,7 +6,7 @@ This note sets out the public materials that a person in the United States shoul
 
 | Document | what-can-you-check-about-a-custodian.md |
 | :---- | :---- |
-| **Version** | 0.2 — draft |
+| **Version** | 0.3 — draft |
 | **Audience** | People in the United States who are researching a company that offers custody, collaborative custody, or inheritance for bitcoin: read [Start here](#start-here). Technical reviewers: read the full note. |
 | **Method** | Separate two roles a service can play. List the materials a prospective holder can find without a sales call. Read the federal and state records that a holder can use to check some of those materials, and tie each statement to a dated or hashed source. |
 | **Changes** | See the [changelog](#changelog). |
@@ -232,22 +232,19 @@ Items 1 to 4 decide who the holder is dealing with and what that party can do. A
 
 ## 5. Reading what you find
 
-This section walks one kind of public website through the baseline. It describes a pattern, not a company.
+This section shows what each level in [§2](#2-two-roles-three-levels) looks like for five items in §4. It describes no service.
 
-A service offers a shared wallet in which the holder has two keys and the service has one. It also offers an inheritance plan. Its website has product pages, a help page, terms of service, and a privacy policy.
+| Item | Missing | Stated | Checkable |
+| :---- | :---- | :---- | :---- |
+| **1. Legal entity** | A brand name, or a copyright line with a company name and nothing more | A full legal name, the state where it was formed, and a street address, in the terms | The same name and state in that state's business registry |
+| **3. Role statement** | Product pages only | A statement in the terms or help pages of which keys the service holds and which spending paths its key takes part in | The statement matched to the wallet's output policy, as the [custody note §2](who-can-move-your-bitcoin.md#2-configuration-assessments) describes |
+| **4. Regulatory position** | No mention | A registration number and license list, or a statement that none is needed and why | The registration in the FinCEN search, and the licenses in the state lookup |
+| **6. Controls report** | No mention | A claim of an audit, or a report type named without its system and period | A SOC 3 report, or a SOC 2 report that names its system and period |
+| **8. Exit without the service** | No mention | Written steps to recover with other software | A recovery that someone ran with only those steps |
 
-| Item | What the holder finds | Level |
-| :---- | :---- | :---- |
-| **1. Legal entity** | A company name in the footer, with no state or address | Stated, in part |
-| **2. Governing terms** | Terms with no governing-law clause and no date | Missing, in part |
-| **3. Role statement** | Product pages say the service cannot move bitcoin alone. The terms describe an inheritance plan in which, after a date, the service co-signs for whoever presents certain secrets. | Stated, across two documents |
-| **4. Regulatory position** | The terms say the service is not a money transmitter. No registration is listed. | Stated |
-| **6. Controls report** | No mention | Missing |
-| **8. Exit without the service** | Guides to recover the wallet with other software | Stated; checkable by running the guide |
+For a co-signing service, item 4 can reach only the stated level. No outside record shows that a service needs no registration or license. The holder can compare the statement with the role statement, as [§3.1](#31-fincen-guidance-on-wallet-services) describes.
 
-The table leaves out five items. Item 5 applies only to a full-custody service, and this service co-signs. The pattern's pages say nothing about items 7, 10, and 11, so those are missing, like item 6. Item 9 needs the privacy policy compared with the sign-up steps, which the pattern does not describe.
-
-The pattern shows the difference between a website with pages and a website with checkable items. Every row above is present in some form. Only the exit guide can be checked without the service, and only by running it. The role statement needs the most attention. The inheritance path is a spending path in which the service's key and records decide who can move the bitcoin, and a holder sees it only by reading the terms beside the product pages. A holder can ask the service which spending paths its key takes part in, and what stops it from co-signing on each one.
+One gap needs the most attention. A co-signing service's product pages can describe only day-to-day signing, while its terms or help pages describe a recovery or inheritance path in which its key co-signs after a date or an event. That path is a spending path. A role statement that leaves it out does not describe the whole role, and a holder sees the path only by reading every document. A holder can ask the service which spending paths its key takes part in, and what stops it from co-signing on each one.
 
 ## 6. Questions that make a claim reviewable
 
@@ -265,7 +262,7 @@ The pattern shows the difference between a website with pages and a website with
 ## 7. Limits and source use
 
 - This note reads federal and state guidance, one rule, two lookups, one federal banking letter, and one description of report types. It is not legal advice and does not decide whether any service needs a registration, license, or charter.
-- No service is assessed. The example in §5 is a pattern, not a company.
+- No service is assessed. §5 describes the three levels, not a service.
 - The note covers holders in the United States only. Other countries have different rules.
 - One state's written custody guidance was read. Other states' rules were not, and they can differ in scope and in what they require.
 - The note makes no claim about how many services publish each item, or how often a stated item turns out to be wrong.
@@ -280,15 +277,15 @@ Each source is listed once with the version consulted and the sections that cite
 
 | Reference | What it defines | Cited in |
 | :---- | :---- | :---- |
-| [FIN-2019-G001](https://www.fincen.gov/system/files/2019-05/FinCEN%20Guidance%20CVC%20FINAL%20508.pdf), issued 9 May 2019, SHA-256 `7f4ffebd…3e1f`, read 2 November 2026 | FinCEN's treatment of hosted, unhosted, and multiple-signature wallet providers | Start here, §2, §3.1, §6 |
+| [FIN-2019-G001](https://www.fincen.gov/system/files/2019-05/FinCEN%20Guidance%20CVC%20FINAL%20508.pdf), issued 9 May 2019, SHA-256 `7f4ffebd…3e1f`, read 2 November 2026 | FinCEN's treatment of hosted, unhosted, and multiple-signature wallet providers | Start here, §2, §3.1, §5, §6 |
 | [31 CFR 1022.380](https://www.ecfr.gov/current/title-31/subtitle-B/chapter-X/part-1022/subpart-C/section-1022.380), read 2 November 2026 | The registration requirement for money services businesses | §3.2 |
-| [MSB Registrant Search](https://msb.fincen.gov/), read 2 November 2026 | The public list of current registrations, and its stated limits | Start here, §3.2, §4, §6 |
+| [MSB Registrant Search](https://msb.fincen.gov/), read 2 November 2026 | The public list of current registrations, and its stated limits | Start here, §3.2, §4, §5, §6 |
 
 **State regulators**
 
 | Reference | What it defines | Cited in |
 | :---- | :---- | :---- |
-| [NMLS Consumer Access](https://www.nmlsconsumeraccess.org/), read 2 November 2026 | The state license lookup and who runs it | Start here, §3.3, §4 |
+| [NMLS Consumer Access](https://www.nmlsconsumeraccess.org/), read 2 November 2026 | The state license lookup and who runs it | Start here, §3.3, §4, §5 |
 | [New York DFS Industry Letter, 30 September 2025](https://www.dfs.ny.gov/industry-guidance/industry-letters/il20250930-updated-guidance-custodial-structures), read 2 November 2026 | New York's expectations for virtual currency custodians on separation, property, and disclosure | §3.4, §4 |
 
 **OCC**
@@ -301,13 +298,13 @@ Each source is listed once with the version consulted and the sections that cite
 
 | Reference | What it defines | Cited in |
 | :---- | :---- | :---- |
-| [SOC 3® - SOC for Service Organizations: Trust Services Criteria for General Use Report](https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-3), read 2 November 2026 | The SOC 3 report as a general-use report | Start here, §1.2, §3.6, §4, §6 |
+| [SOC 3® - SOC for Service Organizations: Trust Services Criteria for General Use Report](https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-3), read 2 November 2026 | The SOC 3 report as a general-use report | Start here, §1.2, §3.6, §4, §5, §6 |
 
 **This repository**
 
 | Reference | What it defines | Cited in |
 | :---- | :---- | :---- |
-| [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md) | Terms, scenarios, the audit and insurance rows, recovery, and privacy | §1.1, §1.2, §2, §4 |
+| [Who Can Move Your Bitcoin?](who-can-move-your-bitcoin.md) | Terms, scenarios, the audit and insurance rows, recovery, and privacy | §1.1, §1.2, §2, §4, §5 |
 | [What Can You Check About a Software Release?](what-can-you-check-about-a-release.md) | The fixed entries | §1.1 |
 
 ## Changelog
@@ -316,5 +313,6 @@ Newest first. Versioning follows [STYLE.md](STYLE.md). Version tags use the pref
 
 | Version | Change |
 | :---- | :---- |
+| [0.3](https://github.com/more-eyes/notes/blob/custodian-v0.3/what-can-you-check-about-a-custodian.md) — 3 November 2026 | Replaces the example website in §5, which could identify a company, with a table of what each level looks like for items 1, 3, 4, 6, and 8. States that a co-signing service's item 4 can reach only the stated level. Keeps the point about recovery and inheritance paths as a general case. Updates the §7 line on §5, and adds §5 to the "Cited in" entries it now cites. |
 | [0.2](https://github.com/more-eyes/notes/blob/custodian-v0.2/what-can-you-check-about-a-custodian.md) — 3 November 2026 | Review fixes. Adds the OCC letter to the §7 source list. Links §3.5 from baseline item 4, and states there that the note gives no record for confirming a charter. Removes the statements in Start here and §4 about how a SOC 2 report is given out, which §3.6 does not source. Names the five baseline items that §5 leaves out, and why, and matches the item 8 label to §4. Drops the unused "Not applicable" entry from §1.1. Fixes wording in the §3.3 Unresolved line, and names the publisher of the SOC 3 page as the AICPA in §3.6, as STYLE.md does. Adds §4 to the OCC letter's "Cited in" entry. |
 | [0.1](https://github.com/more-eyes/notes/blob/custodian-v0.1/what-can-you-check-about-a-custodian.md) — 2 November 2026 | First draft. Two roles, full-custody and co-signing, and three levels for each item: missing, stated, checkable. Records for FinCEN guidance FIN-2019-G001, the FinCEN registration rule and registrant search, the NMLS Consumer Access lookup, New York's 2025 custody guidance, OCC Interpretive Letter 1170, and the AICPA's description of SOC 3, dated or hashed. An eleven-item baseline, a pattern walked through it, and reviewable claims. |
