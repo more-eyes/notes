@@ -71,7 +71,7 @@ A note for reading a security report about software you use. It separates four q
 **[What Can You Check About a Custodian?](what-can-you-check-about-a-custodian.md)**
 *What a company that holds your bitcoin, or a key to it, should let you see*
 
-Version 0.1, draft. See the [changelog](what-can-you-check-about-a-custodian.md#changelog).
+Version 0.2, draft. See the [changelog](what-can-you-check-about-a-custodian.md#changelog).
 
 A baseline for a person in the United States who is researching a company that offers custody, collaborative custody, or inheritance for bitcoin. It separates a service that can move bitcoin alone from one that only co-signs, lists eleven items a holder should be able to find without a sales call, and says which ones a public record can check. It reads FinCEN guidance and its registrant search, the state license lookup, New York's custody guidance, an OCC letter, and the AICPA's description of SOC 3 reports. It names no company.
 
