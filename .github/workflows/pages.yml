@@ -1,0 +1,72 @@
+# Builds more-eyes.org with the same Jekyll build GitHub Pages uses by default,
+# after .github/og/build_og.py draws a preview card for each note.
+# Needs Settings > Pages > Build and deployment > Source: GitHub Actions.
+# Until that is set, the gate job sees the branch deploy and skips the rest,
+# so this workflow does not touch the site.
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  gate:
+    runs-on: ubuntu-24.04
+    outputs:
+      build_type: ${{ steps.pages.outputs.build_type }}
+    steps:
+      - id: pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          type=$(gh api "repos/${{ github.repository }}/pages" --jq .build_type || echo unknown)
+          echo "Pages build_type: $type"
+          echo "build_type=$type" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: gate
+    if: needs.gate.outputs.build_type == 'workflow'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # git dates for og:type article
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pillow==11.0.0
+      - name: Fetch Inter 4.1
+        run: |
+          curl -sSLo inter.zip https://github.com/rsms/inter/releases/download/v4.1/Inter-4.1.zip
+          echo "9883fdd4a49d4fb66bd8177ba6625ef9a64aa45899767dde3d36aa425756b11e  inter.zip" | sha256sum -c -
+          mkdir -p "$RUNNER_TEMP/fonts"
+          unzip -q -j inter.zip extras/ttf/Inter-Bold.ttf extras/ttf/Inter-SemiBold.ttf extras/ttf/Inter-Regular.ttf -d "$RUNNER_TEMP/fonts"
+          rm inter.zip
+      - name: Draw preview cards
+        run: python3 .github/og/build_og.py --fonts "$RUNNER_TEMP/fonts" --config _config.yml
+      - uses: actions/configure-pages@v5
+      - uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - uses: actions/upload-pages-artifact@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
