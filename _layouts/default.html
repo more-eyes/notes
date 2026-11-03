@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en-US" }}">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+{% seo %}
+    <link rel="stylesheet" href="{{ "/assets/css/site.css" | relative_url }}">
+  </head>
+  <body>
+    {%- assign home = "/" | relative_url -%}
+    <header class="site-header">
+      <div class="wrap">
+        {%- if page.url == "/" %}
+        <h1 class="brand"><a href="{{ home }}">{{ site.title }}</a></h1>
+        {%- else %}
+        <p class="brand"><a href="{{ home }}">{{ site.title }}</a></p>
+        {%- endif %}
+        <p class="tagline">Open is not the same as looked at.</p>
+        <nav>
+          <a href="{{ home }}#the-notes">Notes</a>
+          <a href="{{ home }}#what-a-note-is">About</a>
+          <a href="https://github.com/more-eyes/notes">GitHub</a>
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      {%- if page.url != "/" %}
+      <p class="back"><a href="{{ home }}#the-notes">&larr; All notes</a></p>
+      {%- endif %}
+      {{ content }}
+      {%- if page.url != "/" %}
+      <p class="back"><a href="{{ home }}#the-notes">&larr; All notes</a></p>
+      {%- endif %}
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>Text licensed <a href="https://github.com/more-eyes/notes/blob/main/LICENSE">CC BY 4.0</a>.
+          Source: <a href="https://github.com/more-eyes/notes">github.com/more-eyes/notes</a>.</p>
+        <p>Found an error or a missed source? <a href="https://github.com/more-eyes/notes/issues">Open an issue</a> and say which note, which section, and what the source shows.</p>
+      </div>
+    </footer>
+  </body>
+</html>

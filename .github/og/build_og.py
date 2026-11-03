@@ -9,10 +9,14 @@ point jekyll-seo-tag at it. The note files are not changed.
 Usage:
   python3 .github/og/build_og.py --fonts DIR [--config _config.yml]
 
-With --config, the defaults are appended to that file. Run this in CI on the
-checked-out copy only; the generated images and config are not committed.
+With --config, the defaults are appended to that file, and the
+"## The notes" section of README.md (or the file given with --readme) is replaced by a list built from the note
+files: title, subtitle, and current version, in the README's order and groups.
+The H1 and tagline are dropped there too, since the site header shows them.
+Run this in CI on the checked-out copy only; nothing it writes is committed.
 """
 import argparse
+import html
 import json
 import pathlib
 import re
@@ -115,10 +119,59 @@ def draw_card(out, title, subtitle, footer, fonts_dir):
     img.save(out, optimize=True)
 
 
+LINK_RE = re.compile(r"\]\(([^)#/]+\.md)\)")
+
+
+def notes_list(section, notes):
+    """Rebuild the notes section. Keep its ### groups and order; add new notes last."""
+    groups, seen = [], set()
+    for line in section.splitlines():
+        if line.startswith("### "):
+            groups.append((line[4:].strip(), []))
+        elif line.startswith("**["):
+            m = LINK_RE.search(line)
+            if m and m.group(1) in notes and m.group(1) not in seen:
+                if not groups:
+                    groups.append((None, []))
+                groups[-1][1].append(m.group(1))
+                seen.add(m.group(1))
+    rest = [f for f in notes if f not in seen]
+    if rest:
+        if not groups:
+            groups.append((None, []))
+        groups[-1][1].extend(rest)
+    out = []
+    for heading, files in groups:
+        if heading:
+            out.append(f"### {heading}\n")
+        out.append('<ul class="note-list">')
+        for f in files:
+            n = notes[f]
+            href = html.escape(f[:-3] + ".html")
+            sub = f'<span class="note-sub">{html.escape(n["subtitle"])}</span>' if n["subtitle"] else ""
+            out.append(f'<li><a class="note-title" href="{href}">{html.escape(n["title"])}</a>'
+                       f'{sub}<span class="note-ver">Version {n["version"]}</span></li>')
+        out.append("</ul>\n")
+    return "\n".join(out)
+
+
+def rewrite_readme(path, notes):
+    text = path.read_text(encoding="utf-8")
+    m = re.search(r"^## The notes[ \t]*\n(.*?)(?=^## )", text, re.M | re.S)
+    if not m:
+        print("warning: no '## The notes' section in README; list not built", file=sys.stderr)
+        return
+    text = text[:m.start(1)] + "\n" + notes_list(m.group(1), notes) + "\n" + text[m.end(1):]
+    # The header shows the site name and tagline; drop the README's copies.
+    text = re.sub(r"\A# [^\n]*\n+(\*[^*\n][^\n]*\*\n+)?", "", text)
+    path.write_text(text, encoding="utf-8")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--fonts", required=True, type=pathlib.Path)
     ap.add_argument("--config", type=pathlib.Path)
+    ap.add_argument("--readme", type=pathlib.Path)
     ap.add_argument("--only", help="build one note file, for previews")
     a = ap.parse_args()
 
@@ -131,6 +184,7 @@ def main():
         "path": "/assets/og/more-eyes.png", "width": W, "height": H,
         "alt": "more eyes: " + site_desc}}}]
 
+    parsed = {}
     for path in sorted(ROOT.glob("*.md")):
         if path.name in SKIP or (a.only and path.name != a.only):
             continue
@@ -140,6 +194,7 @@ def main():
         for field in ("title", "subtitle"):
             if note[field] and any(c in note[field] for c in DASHES):
                 print(f"warning: dash in {field} of {path.name}", file=sys.stderr)
+        parsed[path.name] = note
         v = note["version"]
         img_rel = f"assets/og/{path.stem}-v{v}.png"
         draw_card(ROOT / img_rel, note["title"], note["subtitle"], f"Version {v}", a.fonts)
@@ -158,6 +213,10 @@ def main():
             values["last_modified_at"] = last
         defaults.append({"scope": {"path": path.name}, "values": values})
         print(f"{path.name}: v{v} -> {img_rel}")
+
+    readme = a.readme or (ROOT / "README.md" if a.config else None)
+    if readme:
+        rewrite_readme(readme, parsed)
 
     block = "\n# Added in CI by .github/og/build_og.py. Not committed.\ndefaults: " + json.dumps(defaults, ensure_ascii=False) + "\n"
     if a.config:
