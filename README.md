@@ -68,6 +68,13 @@ Version 0.3, draft. See the [changelog](what-can-you-check-about-a-vulnerability
 
 A note for reading a security report about software you use. It separates four questions: whether a specific flaw is defined, whether the flawed code is in your copy, whether an attacker can reach it on your system, and what has been shown. It reads the CVE record format, CVSS versions 4.0 and 3.1, OpenVEX, the Linux kernel's CVE process, and Debian's security FAQ against those questions. It names no vulnerability and rates none.
 
+**[What Can You Check About a Custodian?](what-can-you-check-about-a-custodian.md)**
+*What a company that holds your bitcoin, or a key to it, should let you see*
+
+Version 0.1, draft. See the [changelog](what-can-you-check-about-a-custodian.md#changelog).
+
+A baseline for a person in the United States who is researching a company that offers custody, collaborative custody, or inheritance for bitcoin. It separates a service that can move bitcoin alone from one that only co-signs, lists eleven items a holder should be able to find without a sales call, and says which ones a public record can check. It reads FinCEN guidance and its registrant search, the state license lookup, New York's custody guidance, an OCC letter, and the AICPA's description of SOC 3 reports. It names no company.
+
 ### Notes that apply the method
 
 **[What Can You Check About an embit Release?](embit-release-records.md)**
